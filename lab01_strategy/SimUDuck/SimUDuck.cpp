@@ -16,9 +16,12 @@ void DanceMenuet()
 	cout << "I dance menuet!" << endl; 
 }
 
-void FlyWithWings()
-{ 
-	cout << "I'm flying with wings!" << endl; 
+std::function<void()> FlyWithWings()
+{
+	return [ flightsCount = 0 ]() mutable 
+	{
+		cout << "I'm flying with wings! Flights: " << flightsCount++ << endl;
+	};
 }
 
 void QuackQuack() 
@@ -72,7 +75,7 @@ class MallardDuck : public Duck
 {
 public:
 	MallardDuck()
-		: Duck(FlyWithWings, QuackQuack, DanceWaltz)
+		: Duck(FlyWithWings(), QuackQuack, DanceWaltz)
 	{
 		
 	}
@@ -142,6 +145,10 @@ void PlayWithDuck(Duck & duck)
 {
 	duck.Quack();
 	duck.Dance();
+	duck.Fly();
+	duck.Fly();
+	duck.Fly();
+	duck.Fly();
 	duck.Fly();
 	DrawDuck(duck);
 }
