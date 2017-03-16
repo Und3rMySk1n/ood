@@ -11,7 +11,7 @@ int main()
 	wd.RegisterObserver(statsDisplay);
 
 	wd.SetMeasurements(3, 0.7, 760);
-	wd.SetMeasurements(4, 0.8, 761);
+	wd.SetMeasurements(4, 0.8, 780);
 
 	wd.RemoveObserver(statsDisplay);
 
