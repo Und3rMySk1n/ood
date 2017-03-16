@@ -52,24 +52,24 @@ private:
 	остается публичным
 	*/	
 
-	void GetStats(SStats *innerValue, double receivedValue)
+	void GetStats(SStats &innerValue, double receivedValue)
 	{
-		if (innerValue->minValue > receivedValue)
+		if (innerValue.minValue > receivedValue)
 		{
-			innerValue->minValue = receivedValue;
+			innerValue.minValue = receivedValue;
 		}
-		if (innerValue->maxValue < receivedValue)
+		if (innerValue.maxValue < receivedValue)
 		{
-			innerValue->maxValue = receivedValue;
+			innerValue.maxValue = receivedValue;
 		}
-		innerValue->accumulatedValue += receivedValue;
+		innerValue.accumulatedValue += receivedValue;
 	}
 
-	void PrintStats(SStats *innerValue)
+	void PrintStats(SStats const &innerValue)
 	{
-		std::cout << "Max " << innerValue->name  << " " << innerValue->maxValue << std::endl;
-		std::cout << "Min " << innerValue->name << " " << innerValue->minValue << std::endl;
-		std::cout << "Average " << innerValue->name << " " << (innerValue->accumulatedValue / m_countAcc) << std::endl;
+		std::cout << "Max " << innerValue.name  << " " << innerValue.maxValue << std::endl;
+		std::cout << "Min " << innerValue.name << " " << innerValue.minValue << std::endl;
+		std::cout << "Average " << innerValue.name << " " << (innerValue.accumulatedValue / m_countAcc) << std::endl;
 		std::cout << "----------------" << std::endl;
 	}
 
@@ -87,9 +87,9 @@ private:
 		PrintStats(m_pressure);
 	}
 
-	SStats *m_temperature = new SStats("temperature");
-	SStats *m_humidity = new SStats("humidity");
-	SStats *m_pressure = new SStats("pressure");
+	SStats m_temperature = { "temperature"};
+	SStats m_humidity = { "humidity" };
+	SStats m_pressure = { "pressure" };
 	unsigned m_countAcc = 0;
 };
 
