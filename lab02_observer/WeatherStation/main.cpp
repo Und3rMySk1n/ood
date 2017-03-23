@@ -5,7 +5,7 @@ int main()
 	CWeatherData wd;
 
 	CDisplay display;
-	wd.RegisterObserver(display, 1);
+	wd.RegisterObserver(display, 5);
 
 	CStatsDisplay statsDisplay;
 	wd.RegisterObserver(statsDisplay, 2);

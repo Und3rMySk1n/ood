@@ -46,6 +46,8 @@ public:
 
 	void NotifyObservers() override
 	{
+		ClearUnregisteredList();
+
 		T data = GetChangedData();
 		for (auto & it : m_observers)
 		{
@@ -58,14 +60,7 @@ public:
 
 	void RemoveObserver(ObserverType & observer) override
 	{
-		for (auto & it : m_observers)
-		{
-			auto wantedObserver = it.second.find(&observer);
-			if (wantedObserver != it.second.end())
-			{
-				it.second.erase(wantedObserver);
-			}
-		}
+		m_observersToDelete.insert(&observer);
 	}
 
 protected:
@@ -75,4 +70,26 @@ protected:
 
 private:
 	std::map<int, std::set<ObserverType *>> m_observers;
+	std::set<ObserverType *> m_observersToDelete;
+
+	void ClearUnregisteredList()
+	{
+		for (auto observer : m_observersToDelete)
+		{
+			DeleteObserverFromList(*observer);
+		}
+		m_observersToDelete.clear();
+	}
+
+	void DeleteObserverFromList(ObserverType & observer)
+	{
+		for (auto & it : m_observers)
+		{
+			auto wantedObserver = it.second.find(&observer);
+			if (wantedObserver != it.second.end())
+			{
+				it.second.erase(wantedObserver);
+			}
+		}
+	}
 };
