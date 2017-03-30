@@ -217,4 +217,33 @@ int main()
 		auto blackTea = make_unique<CTea>();
 		auto mate = make_unique<CTea>(TeaType::Mate);
 	}
+
+	{
+		cout << endl << "-------------------" << endl << endl;
+		
+		auto coffeeWithChocolateLiquor =
+			make_unique<CCoffee>()
+			<< MakeCondiment<CLiquor>(LiquorType::Chocolate);
+		cout << coffeeWithChocolateLiquor->GetDescription() << endl;
+
+		auto coffeeWithCream =
+			make_unique<CCoffee>()
+			<< MakeCondiment<CCream>();
+		cout << coffeeWithCream->GetDescription() << endl;
+
+		cout << endl << "-------------------" << endl << endl;
+
+		auto coffee = make_unique<CCoffee>();
+		cout << coffee->GetDescription() << " costs " << coffee->GetCost() << endl;
+
+		auto coffeeWithOneChocolate =
+			make_unique<CCoffee>()
+			<< MakeCondiment<CChocolate>();
+		cout << coffeeWithOneChocolate->GetDescription() << " costs " << coffeeWithOneChocolate->GetCost() << endl;
+
+		auto coffeeWithFiveChocolates =
+			make_unique<CCoffee>()
+			<< MakeCondiment<CChocolate>(5);
+		cout << coffeeWithFiveChocolates->GetDescription() << " costs " << coffeeWithFiveChocolates->GetCost() << endl;
+	}
 }
