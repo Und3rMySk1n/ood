@@ -115,12 +115,11 @@ public:
 
 	double GetCost() const override 
 	{ 
-		if (m_size == MilkShakeSize::Medium)
+		switch (m_size)
 		{
+			case MilkShakeSize::Medium:
 			return 60;
-		}
-		else if (m_size == MilkShakeSize::Large)
-		{
+			case MilkShakeSize::Large:
 			return 80;
 		}
 		return 50;
