@@ -198,4 +198,23 @@ int main()
 		// Выписываем счет покупателю
 		cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
 	}
+
+	{
+		cout << endl << "-------------------" << endl << endl;
+		auto latte = make_unique<CLatte>(CoffeeSize::Standard);
+		auto doubleLatte = make_unique<CLatte>(CoffeeSize::Double);
+		cout << "Standard latte costs: " << latte->GetCost() << endl;
+		cout << "Double latte costs: " << doubleLatte->GetCost() << endl;
+
+		cout << endl << "-------------------" << endl << endl;
+		auto smallMilkShake = make_unique<CMilkshake>();
+		auto mediumMilkShake = make_unique<CMilkshake>(MilkShakeSize::Medium);
+		auto largeMilkShake = make_unique<CMilkshake>(MilkShakeSize::Large);
+		cout << "Small milkshake costs: " << smallMilkShake->GetCost() << endl;
+		cout << "Medium milkshake costs: " << mediumMilkShake->GetCost() << endl;
+		cout << "Large milkshake costs: " << largeMilkShake->GetCost() << endl;
+
+		auto blackTea = make_unique<CTea>();
+		auto mate = make_unique<CTea>(TeaType::Mate);
+	}
 }
