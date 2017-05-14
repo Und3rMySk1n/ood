@@ -139,6 +139,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Designer.h" />
     <ClInclude Include="IShapeFactory.h" />
     <ClInclude Include="PictureDraft.h" />

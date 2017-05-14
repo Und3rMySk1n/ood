@@ -4,14 +4,42 @@
 
 using namespace std;
 
+struct Shape_
+{
+	CShape shape;
+};
+
+BOOST_FIXTURE_TEST_SUITE(Shape, Shape_)
+	BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(has_black_color)
+		{
+			BOOST_CHECK_EQUAL(shape.GetColor(), Color::black);
+		}
+
+		BOOST_AUTO_TEST_CASE(can_change_color)
+		{
+			shape.SetColor(Color::red);
+			BOOST_CHECK_EQUAL(shape.GetColor(), Color::red);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
+
 struct Triangle_
 {
 	CTriangle triangle = CTriangle({ 0, 0 }, { 1, 1 }, { 2, 2 });
 };
 
 BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
-
 	BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(has_black_color)
+		{
+			BOOST_CHECK_EQUAL(triangle.GetColor(), Color::black);
+		}
+		BOOST_AUTO_TEST_CASE(can_change_color)
+		{
+			triangle.SetColor(Color::red);
+			BOOST_CHECK_EQUAL(triangle.GetColor(), Color::red);
+		}
 		BOOST_AUTO_TEST_CASE(returns_its_vertices)
 		{
 			Vertex one = triangle.GetVertex1();
@@ -26,5 +54,4 @@ BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
 			BOOST_CHECK_EQUAL(three.y, 2);
 		}
 	BOOST_AUTO_TEST_SUITE_END()
-
 BOOST_AUTO_TEST_SUITE_END()
