@@ -2,6 +2,7 @@
 #include "../libpainter/Designer.h"
 #include "../libpainter/PictureDraft.h"
 #include "../libpainter/IShapeFactory.h"
+#include "../libpainter/Canvas.h"
 
 using namespace std;
 using boost::algorithm::all_of;
@@ -11,10 +12,15 @@ class CMockShape : public CShape
 {
 public:
 	CMockShape(const string& descr)
-		:descr(descr)
+		: descr(descr)
+		, CShape()
 	{
 	}
 	string descr;
+	void Draw(CCanvas &canvas) const
+	{
+		(void) canvas;
+	}
 };
 
 struct MockShapeFactory : IShapeFactory

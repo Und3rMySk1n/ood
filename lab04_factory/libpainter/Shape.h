@@ -1,5 +1,7 @@
 #pragma once
 #include "Color.h"
+#include "Vertex.h"
+#include "Canvas.h"
 
 class CShape
 {
@@ -8,6 +10,8 @@ public:
 
 	void SetColor(Color color);
 	Color GetColor() const;
+
+	virtual void Draw(CCanvas &canvas) const = 0;
 
 	virtual ~CShape();
 private:

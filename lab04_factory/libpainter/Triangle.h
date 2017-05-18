@@ -1,12 +1,6 @@
 #pragma once
 #include "Shape.h"
 
-struct Vertex
-{
-	float x;
-	float y;
-};
-
 class CTriangle :
 	public CShape
 {
@@ -16,6 +10,8 @@ public:
 	Vertex GetVertex1() const;
 	Vertex GetVertex2() const;
 	Vertex GetVertex3() const;
+
+	void Draw(CCanvas &canvas) const override;
 
 	~CTriangle();
 private:
