@@ -8,7 +8,7 @@ class CCanvas :
 	public ICanvas
 {
 public:
-	CCanvas(std::shared_ptr<std::stringstream> outputStream)
+	CCanvas(std::ostream& outputStream)
 		: m_output(outputStream)
 	{
 	};
@@ -17,11 +17,9 @@ public:
 	void DrawLine(const Vertex from, const Vertex to) override;
 	void DrawEllipse(const Vertex center, float width, float height) override;
 
-	std::string GetCanvasContent() const;
 
-	~CCanvas();
 private:
 	Color m_color = Color::black;
 	std::string m_canvasContent;
-	std::shared_ptr<std::stringstream> m_output;
+	std::ostream& m_output;
 };

@@ -14,10 +14,7 @@ void CCanvas::DrawLine(const Vertex from, const Vertex to)
 	stringstream newLine;
 	string newLineAsString;
 
-	newLine << "Line: [" << from.x << ", " << from.y << "], [" << to.x << ", " << to.y << "]\n";
-	newLineAsString = newLine.str();
-
-	m_canvasContent += newLineAsString;
+	m_output << "Line: [" << from.x << ", " << from.y << "], [" << to.x << ", " << to.y << "]\n";
 }
 
 void CCanvas::DrawEllipse(const Vertex center, float width, float height)
@@ -25,17 +22,7 @@ void CCanvas::DrawEllipse(const Vertex center, float width, float height)
 	stringstream newLine;
 	string newLineAsString;
 
-	newLine << "Ellipse: [" << center.x << ", " << center.y << "], Width: " << width << ", Height: " << height << "\n";
-	newLineAsString = newLine.str();
-
-	m_canvasContent += newLineAsString;
+	m_output << "Ellipse: [" << center.x << ", " << center.y << "], Width: " << width << ", Height: " << height << "\n";
 }
 
-string CCanvas::GetCanvasContent() const
-{
-	return m_canvasContent;
-}
 
-CCanvas::~CCanvas()
-{
-}
