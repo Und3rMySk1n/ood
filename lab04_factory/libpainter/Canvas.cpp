@@ -4,10 +4,6 @@
 
 using namespace std;
 
-CCanvas::CCanvas()
-{
-}
-
 void CCanvas::SetColor(Color color)
 {
 	m_color = color;

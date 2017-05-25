@@ -8,7 +8,8 @@ using namespace std;
 
 struct Triangle_
 {
-	CCanvas canvas;
+	shared_ptr<stringstream> outputStream = make_shared<stringstream>();
+	CCanvas canvas = CCanvas(outputStream);
 	CTriangle triangle = CTriangle({ 0, 0 }, { 1, 1 }, { 2, 2 });
 };
 
