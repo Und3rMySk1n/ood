@@ -75,6 +75,9 @@
     <ClInclude Include="Painter.h">
       <Filter>Source Files\Painter</Filter>
     </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="Painter.cpp">
       <Filter>Source Files\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

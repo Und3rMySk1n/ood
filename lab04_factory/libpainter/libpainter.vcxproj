@@ -147,6 +147,7 @@
     <ClInclude Include="IShapeFactory.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="PictureDraft.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="stdafx.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Designer.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PictureDraft.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="stdafx.cpp">
