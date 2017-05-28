@@ -25,9 +25,9 @@ void CRectangle::Draw(ICanvas &canvas) const
 }
 
 CRectangle::CRectangle(Vertex leftTop, Vertex rightBottom)
+	: m_leftTop(leftTop)
+	, m_rightBottom(rightBottom)
 {
-	m_leftTop = leftTop;
-	m_rightBottom = rightBottom;
 }
 
 

@@ -2,6 +2,7 @@
 #include "../libpainter/Shape.h"
 #include "../libpainter/Triangle.h"
 #include "../libpainter/Rectangle.h"
+#include "../libpainter/Ellipse.h"
 #include "../libpainter/Canvas.h"
 #include "../libpainter/Canvas.h"
 #include <iostream>
@@ -92,6 +93,47 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 Line: [2.3, 0.2], [2.3, 2.4]
 Line: [2.3, 2.4], [0.1, 2.4]
 Line: [0.1, 2.4], [0.1, 0.2]
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
+
+
+struct Ellipse_
+{
+	stringstream outputStream;
+	CCanvas canvas{ outputStream };
+	CEllipse ellipse{ {0, 1}, (float)5, (float)10 };
+};
+
+BOOST_FIXTURE_TEST_SUITE(Ellipse, Ellipse_)
+	BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(has_black_color)
+		{
+			BOOST_CHECK_EQUAL(ellipse.GetColor(), Color::black);
+		}
+		BOOST_AUTO_TEST_CASE(can_change_color)
+		{
+			ellipse.SetColor(Color::pink);
+			BOOST_CHECK_EQUAL(ellipse.GetColor(), Color::pink);
+		}
+		BOOST_AUTO_TEST_CASE(returns_its_vertices)
+		{
+			Vertex center = ellipse.GetCenter();
+			float width = ellipse.GetHorizontalRadius();
+			float height = ellipse.GetVerticalRadius();
+
+			BOOST_CHECK_EQUAL(center.x, 0);
+			BOOST_CHECK_EQUAL(center.y, 1);
+			BOOST_CHECK_EQUAL(width, 5);
+			BOOST_CHECK_EQUAL(height, 10);
+		}
+		BOOST_AUTO_TEST_CASE(can_draw_itself_on_canvas)
+		{
+			ellipse.Draw(canvas);
+			auto expectedCanvasContent = 
+				R"(Ellipse: [0, 1], Width: 5, Height: 10
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
