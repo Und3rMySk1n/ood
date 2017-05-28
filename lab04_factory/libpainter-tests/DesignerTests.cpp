@@ -2,7 +2,6 @@
 #include "../libpainter/Designer.h"
 #include "../libpainter/PictureDraft.h"
 #include "../libpainter/IShapeFactory.h"
-#include "../libpainter/Canvas.h"
 
 using namespace std;
 using boost::algorithm::all_of;
@@ -17,7 +16,7 @@ public:
 	{
 	}
 	string descr;
-	void Draw(CCanvas &canvas) const
+	void Draw(ICanvas &canvas) const 
 	{
 		(void) canvas;
 	}

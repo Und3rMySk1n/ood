@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "../libpainter/ShapeFactory.h"
+#include "../libpainter/Canvas.h"
 
 using namespace std;
 

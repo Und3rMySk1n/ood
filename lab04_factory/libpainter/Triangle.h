@@ -11,7 +11,7 @@ public:
 	Vertex GetVertex2() const;
 	Vertex GetVertex3() const;
 
-	void Draw(CCanvas &canvas) const override;
+	void Draw(ICanvas &canvas) const override;
 
 	~CTriangle();
 private:

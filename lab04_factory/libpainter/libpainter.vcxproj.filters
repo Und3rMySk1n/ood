@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Designer">
       <UniqueIdentifier>{d591d95e-293c-4bc6-8cd5-30add364bdd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Painter">
+      <UniqueIdentifier>{93c09421-26dc-4851-ba6f-b73e1dad9512}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,11 +63,17 @@
     <ClInclude Include="Vertex.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Canvas.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShapeFactory.h">
       <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="IPainter.h">
+      <Filter>Source Files\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Source Files\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Source Files\Painter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +92,14 @@
     <ClCompile Include="Triangle.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Canvas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeFactory.cpp">
       <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>Source Files\Painter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

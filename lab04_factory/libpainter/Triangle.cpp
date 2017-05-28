@@ -14,7 +14,7 @@ CTriangle::~CTriangle()
 {
 }
 
-void CTriangle::Draw(CCanvas &canvas) const
+void CTriangle::Draw(ICanvas &canvas) const
 {
 	canvas.DrawLine(m_vertex1, m_vertex2);
 	canvas.DrawLine(m_vertex2, m_vertex3);

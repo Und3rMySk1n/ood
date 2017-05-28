@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Triangle.h"
 #include "ShapeFactory.h"
+#include <sstream>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ CShapeFactory::CShapeFactory()
 
 unique_ptr<CShape> CShapeFactory::CreateShape(const string & description)
 {
-	istringstream params(description);
+	stringstream params(description);
 	string name;
 	params >> name;	
 
@@ -27,6 +28,8 @@ unique_ptr<CShape> CShapeFactory::CreateShape(const string & description)
 
 		return make_unique<CTriangle>(v1, v2, v3);
 	}
+
+	throw invalid_argument("Unknown shape");
 }
 
 CShapeFactory::~CShapeFactory()

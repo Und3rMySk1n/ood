@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "../libpainter/PictureDraft.h"
-#include "../libpainter/Shape.h"
 
 using namespace std;
 
@@ -13,7 +12,7 @@ public:
 	{
 	}
 	string descr;
-	void Draw(CCanvas &canvas) const
+	void Draw(ICanvas &canvas) const
 	{
 		(void)canvas;
 	}

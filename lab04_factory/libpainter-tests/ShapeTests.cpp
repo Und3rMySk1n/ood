@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "../libpainter/Shape.h"
 #include "../libpainter/Triangle.h"
+#include "../libpainter/Canvas.h"
+#include "../libpainter/Canvas.h"
 #include <iostream>
 #include <sstream>
 
