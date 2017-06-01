@@ -47,6 +47,20 @@ Line: [1, 15], [1, 1]
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
+
+		BOOST_AUTO_TEST_CASE(polygons)
+		{
+			auto ellipse = factory.CreateShape("polygon 5 5 10 5");
+			ellipse->Draw(canvas);
+			auto expectedCanvasContent =
+				R"(Line: [15, 5], [8.09017, 14.5106]
+Line: [8.09017, 14.5106], [-3.09017, 10.8779]
+Line: [-3.09017, 10.8779], [-3.09017, -0.877853]
+Line: [-3.09017, -0.877853], [8.09017, -4.51056]
+Line: [8.09017, -4.51056], [15, 5]
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
 	BOOST_AUTO_TEST_SUITE_END()
 
 	BOOST_AUTO_TEST_SUITE(throws_exception)
