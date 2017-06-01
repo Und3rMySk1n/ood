@@ -24,5 +24,28 @@ Line: [2, 2], [0, 0]
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
+
+		BOOST_AUTO_TEST_CASE(rectangles)
+		{
+			auto rectangle = factory.CreateShape("rectangle 1 1 15 15");
+			rectangle->Draw(canvas);
+			auto expectedCanvasContent =
+				R"(Line: [1, 1], [15, 1]
+Line: [15, 1], [15, 15]
+Line: [15, 15], [1, 15]
+Line: [1, 15], [1, 1]
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
+
+		BOOST_AUTO_TEST_CASE(ellipses)
+		{
+			auto ellipse = factory.CreateShape("ellipse 1 1 15 20");
+			ellipse->Draw(canvas);
+			auto expectedCanvasContent =
+				R"(Ellipse: [1, 1], Width: 15, Height: 20
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
 	BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()
