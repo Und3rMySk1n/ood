@@ -2,6 +2,7 @@
 #include "Triangle.h"
 #include "Rectangle.h"
 #include "Ellipse.h"
+#include "RegularPolygon.h"
 #include "ShapeFactory.h"
 #include <sstream>
 
@@ -52,6 +53,19 @@ unique_ptr<CShape> CShapeFactory::CreateShape(const string & description)
 		params >> height;
 
 		return make_unique<CEllipse>(center, width, height);
+	}
+	else if (name == "polygon")
+	{
+		Vertex center;
+		float radius;
+		int vertexCount;
+
+		params >> center.x;
+		params >> center.y;
+		params >> radius;
+		params >> vertexCount;
+
+		return make_unique<CRegularPolygon>(center, radius, vertexCount);
 	}
 
 	throw invalid_argument("Unknown shape");

@@ -2,8 +2,8 @@
 #include "../libpainter/Shape.h"
 #include "../libpainter/Triangle.h"
 #include "../libpainter/Rectangle.h"
+#include "../libpainter/RegularPolygon.h"
 #include "../libpainter/Ellipse.h"
-#include "../libpainter/Canvas.h"
 #include "../libpainter/Canvas.h"
 #include <iostream>
 #include <sstream>
@@ -134,6 +134,53 @@ BOOST_FIXTURE_TEST_SUITE(Ellipse, Ellipse_)
 			ellipse.Draw(canvas);
 			auto expectedCanvasContent = 
 				R"(Ellipse: [0, 1], Width: 5, Height: 10
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
+
+
+
+struct RegularPolygon_
+{
+	stringstream outputStream;
+	CCanvas canvas{ outputStream };
+	CRegularPolygon polygon{ {5, 5}, 10, 5 };
+};
+
+	BOOST_FIXTURE_TEST_SUITE(Regular_polygon, RegularPolygon_)
+		BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(has_black_color)
+		{
+			BOOST_CHECK_EQUAL(polygon.GetColor(), Color::black);
+		}
+		BOOST_AUTO_TEST_CASE(can_change_color)
+		{
+			polygon.SetColor(Color::red);
+			BOOST_CHECK_EQUAL(polygon.GetColor(), Color::red);
+		}
+		BOOST_AUTO_TEST_CASE(returns_its_vertices)
+		{
+			Vertex center = polygon.GetCenter();
+			float radius = polygon.GetRadius();
+			int vertexCount = polygon.GetVertexCount();
+
+			BOOST_CHECK_EQUAL(center.x, 5);
+			BOOST_CHECK_EQUAL(center.y, 5);
+			BOOST_CHECK_CLOSE(radius, 10.0, 0.0001);
+			BOOST_CHECK_EQUAL(vertexCount, 5);
+		}
+		BOOST_AUTO_TEST_CASE(can_draw_itself_on_canvas)
+		{
+			BOOST_CHECK(true);
+			polygon.Draw(canvas);
+			auto expectedCanvasContent =
+				R"(Line: [15, 5], [8.09017, 14.5106]
+Line : [8.09017, 14.5106], [-3.09017, 10.8779]
+Line : [-3.09017, 10.8779], [-3.09017, -0.877853]
+Line : [-3.09017, -0.877853], [8.09017, -4.51056]
+Line : [8.09017, -4.51056], [15, 5]
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}

@@ -40,10 +40,10 @@ Line: [1, 15], [1, 1]
 
 		BOOST_AUTO_TEST_CASE(ellipses)
 		{
-			auto ellipse = factory.CreateShape("ellipse 1 1 15 20");
+			auto ellipse = factory.CreateShape("ellipse 1 1 15.13 20.27");
 			ellipse->Draw(canvas);
 			auto expectedCanvasContent =
-				R"(Ellipse: [1, 1], Width: 15, Height: 20
+				R"(Ellipse: [1, 1], Width: 15.13, Height: 20.27
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
