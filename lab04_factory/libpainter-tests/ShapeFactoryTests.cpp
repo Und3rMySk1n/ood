@@ -48,4 +48,11 @@ Line: [1, 15], [1, 1]
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
 	BOOST_AUTO_TEST_SUITE_END()
+
+	BOOST_AUTO_TEST_SUITE(throws_exception)
+		BOOST_AUTO_TEST_CASE(if_shape_does_not_exist)
+		{
+			BOOST_CHECK_THROW(auto shape = factory.CreateShape("some different shape"), invalid_argument);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()
