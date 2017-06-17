@@ -22,13 +22,7 @@ namespace shape_drawing_lib
 	class CTriangle : public ICanvasDrawable
 	{
 	public:
-		CTriangle(const Point & p1, const Point & p2, const Point & p3)
-			: m_pOne(p1)
-			, m_pTwo(p2)
-			, m_pThree(p3)
-		{
-		}
-
+		CTriangle(const Point & p1, const Point & p2, const Point & p3);
 		void Draw(graphics_lib::ICanvas & canvas)const override;
 	private:
 		Point m_pOne = { 0, 0 };
@@ -39,17 +33,11 @@ namespace shape_drawing_lib
 	class CRectangle : public ICanvasDrawable
 	{
 	public:
-		CRectangle(const Point & leftTop, int width, int height)
-		{
-			// TODO: написать код конструктора
-		}
-
-		void Draw(graphics_lib::ICanvas & canvas)const override
-		{
-			// TODO: написать код рисовани€ пр€моугольника на холсте
-		}
+		CRectangle(const Point & leftTop, int width, int height);
+		void Draw(graphics_lib::ICanvas & canvas)const override;
 	private:
-		// TODO: дописать приватную часть 
+		Point m_leftTop = { 0, 0 };
+		Point m_rightBottom = { 0, 0 };
 	};
 
 	// ’удожник, способный рисовать ICanvasDrawable-объекты на ICanvas
