@@ -1,17 +1,28 @@
 #include "stdafx.h"
+#include "../lwtask/ShapeDrawingLib.h"
 
 using namespace std;
 
-struct Adapter_
+struct Triangle_
 {
-	
+	stringstream outputStream;
+	graphics_lib::CCanvas canvas{ outputStream };
+	shape_drawing_lib::CTriangle triangle{ {0, 0}, {1, 1}, {2, 2} };
 };
 
-BOOST_FIXTURE_TEST_SUITE(Adapter, Adapter_)
-	BOOST_AUTO_TEST_SUITE(has_tests)
-		BOOST_AUTO_TEST_CASE(and_they_works)
+BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
+	BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(can_be_drawn)
 		{
-			BOOST_CHECK(true);
+			triangle.Draw(canvas);
+			auto expectedCanvasContent =
+				R"(MoveTo (0, 0)
+LineTo (1, 1)
+LineTo (2, 2)
+LineTo (0, 0)
+)";
+
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
 		}
 	BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()

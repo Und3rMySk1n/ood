@@ -97,7 +97,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -149,10 +149,18 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lwtask\Application.h" />
+    <ClInclude Include="..\lwtask\GraphicsLib.h" />
+    <ClInclude Include="..\lwtask\ModernGraphicsLib.h" />
+    <ClInclude Include="..\lwtask\ShapeDrawingLib.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\lwtask\Application.cpp" />
+    <ClCompile Include="..\lwtask\GraphicsLib.cpp" />
+    <ClCompile Include="..\lwtask\ModernGraphicsLib.cpp" />
+    <ClCompile Include="..\lwtask\ShapeDrawingLib.cpp" />
     <ClCompile Include="AdapterTests.cpp" />
     <ClCompile Include="lwtask-tests.cpp" />
     <ClCompile Include="stdafx.cpp">
