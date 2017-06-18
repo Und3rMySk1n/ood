@@ -53,3 +53,42 @@ LineTo (0, 0)
 	}
 	BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()
+
+
+struct Painter_
+{
+	stringstream outputStream;
+	graphics_lib::CCanvas canvas{ outputStream };
+	shape_drawing_lib::CRectangle rectangle{ { 0, 0 }, 5, 10 };
+	shape_drawing_lib::CTriangle triangle{ { 0, 0 },{ 1, 1 },{ 2, 2 } };
+	shape_drawing_lib::CCanvasPainter painter{ canvas };
+};
+
+BOOST_FIXTURE_TEST_SUITE(Painter, Painter_)
+	BOOST_AUTO_TEST_SUITE(when_created)
+		BOOST_AUTO_TEST_CASE(can_draw_rectangles)
+		{
+			painter.Draw(rectangle);
+			auto expectedCanvasContent =
+			R"(MoveTo (0, 0)
+LineTo (5, 0)
+LineTo (5, 10)
+LineTo (0, 10)
+LineTo (0, 0)
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
+
+		BOOST_AUTO_TEST_CASE(can_draw_triangles)
+		{
+			painter.Draw(triangle);
+			auto expectedCanvasContent =
+				R"(MoveTo (0, 0)
+LineTo (1, 1)
+LineTo (2, 2)
+LineTo (0, 0)
+)";
+			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()

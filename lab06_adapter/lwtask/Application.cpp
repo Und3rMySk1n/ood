@@ -1,5 +1,6 @@
 #pragma once
 #include "Application.h"
+#include "ShapeDrawingAdapter.h"
 
 // Пространство имен приложения (доступно для модификации)
 namespace app
@@ -11,7 +12,8 @@ namespace app
 		CTriangle triangle({ 10, 15 }, { 100, 200 }, { 150, 250 });
 		CRectangle rectangle({ 30, 40 }, 18, 24);
 
-		// TODO: нарисовать прямоугольник и треугольник при помощи painter
+		painter.Draw(triangle);
+		painter.Draw(rectangle);
 	}
 
 	void PaintPictureOnCanvas(std::ostream& outputStream)
@@ -21,13 +23,14 @@ namespace app
 		PaintPicture(painter);
 	}
 
-	void PaintPictureOnModernGraphicsRenderer()
+	void PaintPictureOnModernGraphicsRenderer(std::ostream& outputStream)
 	{
-		modern_graphics_lib::CModernGraphicsRenderer renderer(std::cout);
-		(void)&renderer; // устраняем предупреждение о неиспользуемой переменной
+		modern_graphics_lib::CModernGraphicsRenderer renderer(outputStream);
+		shape_drawing_adapter::CCanvasAdapter canvasAdapter(renderer);
+		shape_drawing_lib::CCanvasPainter painter(canvasAdapter);
 
-						 // TODO: при помощи существующей функции PaintPicture() нарисовать
-						 // картину на renderer
-						 // Подсказка: используйте паттерн "Адаптер"
+		renderer.BeginDraw();
+		PaintPicture(painter);
+		renderer.EndDraw();
 	}
 }

@@ -32,4 +32,14 @@ namespace shape_drawing_lib
 		canvas.LineTo(m_leftTop.x, m_rightBottom.y);
 		canvas.LineTo(m_leftTop.x, m_leftTop.y);
 	}
+
+	CCanvasPainter::CCanvasPainter(graphics_lib::ICanvas & canvas)
+		: m_canvas(&canvas)
+	{
+	}
+
+	void CCanvasPainter::Draw(const ICanvasDrawable & drawable)
+	{
+		drawable.Draw(*m_canvas);
+	}
 }

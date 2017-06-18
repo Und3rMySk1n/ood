@@ -12,20 +12,16 @@ using namespace std;
 
 int main()
 {
-	/*cout << "Should we use new API (y)?";
+	cout << "Should we use new API (y)?";
 	string userInput;
 	if (getline(cin, userInput) && (userInput == "y" || userInput == "Y"))
 	{
-		app::PaintPictureOnModernGraphicsRenderer();
+		app::PaintPictureOnModernGraphicsRenderer(cout);
 	}
 	else
 	{
-		app::PaintPictureOnCanvas();
-	}*/
-
-	graphics_lib::CCanvas canvas(std::cout);
-	shape_drawing_lib::CTriangle triangle{ { 0, 0 },{ 1, 1 },{ 2, 2 } };
-	triangle.Draw(canvas);
+		app::PaintPictureOnCanvas(cout);
+	}
 
 	return 0;
 }

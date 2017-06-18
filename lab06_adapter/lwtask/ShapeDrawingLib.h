@@ -44,15 +44,9 @@ namespace shape_drawing_lib
 	class CCanvasPainter
 	{
 	public:
-		CCanvasPainter(graphics_lib::ICanvas & canvas)
-		{
-			// TODO: дописать конструктор класса
-		}
-		void Draw(const ICanvasDrawable & drawable)
-		{
-			// TODO: дописать код рисования ICanvasDrawable на canvas, переданном в конструктор
-		}
+		CCanvasPainter(graphics_lib::ICanvas & canvas);
+		virtual void Draw(const ICanvasDrawable & drawable);
 	private:
-		// TODO: дописать приватную часть
+		graphics_lib::ICanvas *m_canvas;
 	};
 }

@@ -151,6 +151,7 @@
     <ClCompile Include="GraphicsLib.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModernGraphicsLib.cpp" />
+    <ClCompile Include="ShapeDrawingAdapter.cpp" />
     <ClCompile Include="ShapeDrawingLib.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="GraphicsLibPro.h" />
     <ClInclude Include="ModernGraphicsLib.h" />
     <ClInclude Include="ModernGraphicsLibPro.h" />
+    <ClInclude Include="ShapeDrawingAdapter.h" />
     <ClInclude Include="ShapeDrawingLib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
