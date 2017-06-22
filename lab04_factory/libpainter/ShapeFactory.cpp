@@ -6,7 +6,7 @@
 #include "ShapeFactory.h"
 #include <sstream>
 #include "Utils.h"
-
+s
 using namespace std;
 
 CShapeFactory::CShapeFactory()
@@ -15,68 +15,41 @@ CShapeFactory::CShapeFactory()
 
 unique_ptr<CShape> CShapeFactory::CreateShape(const string & description)
 {
-	stringstream params(description);
-	string name;
-	params >> name;	
+	vector<string> params = GetParamsFromString(description);
+	string shape = params.at(0);
 
-	if (name == "triangle")
+	if (shape == "triangle")
 	{
-		Vertex v1, v2, v3;
-		string colorAsString;
-
-		params >> colorAsString; 
-		params >> v1.x;
-		params >> v1.y;
-		params >> v2.x;
-		params >> v2.y;
-		params >> v3.x;
-		params >> v3.y;
-		Color color = GetColorFromString(colorAsString);
+		Color color = GetColorFromString(params.at(1));
+		Vertex v1 = { stof(params.at(2)), stof(params.at(3)) };
+		Vertex v2 = { stof(params.at(4)), stof(params.at(5)) };
+		Vertex v3 = { stof(params.at(6)), stof(params.at(7)) };
 
 		return make_unique<CTriangle>(color, v1, v2, v3);
 	}
-	else if (name == "rectangle")
+	else if (shape == "rectangle")
 	{
-		Vertex leftTop, rightTop;
-		string colorAsString;
-
-		params >> colorAsString;
-		params >> leftTop.x;
-		params >> leftTop.y;
-		params >> rightTop.x;
-		params >> rightTop.y;
-		Color color = GetColorFromString(colorAsString);
+		Color color = GetColorFromString(params.at(1));
+		Vertex leftTop = { stof(params.at(2)), stof(params.at(3)) };
+		Vertex rightTop = { stof(params.at(4)), stof(params.at(5)) };
 
 		return make_unique<CRectangle>(color, leftTop, rightTop);
 	}
-	else if (name == "ellipse")
+	else if (shape == "ellipse")
 	{
-		Vertex center;
-		float height, width;
-		string colorAsString;
-		
-		params >> colorAsString;
-		params >> center.x;
-		params >> center.y;
-		params >> width;
-		params >> height;
-		Color color = GetColorFromString(colorAsString);
+		Color color = GetColorFromString(params.at(1));
+		Vertex center = { stof(params.at(2)), stof(params.at(3)) };
+		float width = stof(params.at(4));
+		float height = stof(params.at(5));
 
 		return make_unique<CEllipse>(color, center, width, height);
 	}
-	else if (name == "polygon")
+	else if (shape == "polygon")
 	{
-		Vertex center;
-		float radius;
-		int vertexCount;
-		string colorAsString;
-
-		params >> colorAsString;
-		params >> center.x;
-		params >> center.y;
-		params >> radius;
-		params >> vertexCount;
-		Color color = GetColorFromString(colorAsString);
+		Color color = GetColorFromString(params.at(1));
+		Vertex center = { stof(params.at(2)), stof(params.at(3)) };
+		float radius = stof(params.at(4));
+		int vertexCount = stoi(params.at(5));
 
 		return make_unique<CRegularPolygon>(color, center, radius, vertexCount);
 	}
