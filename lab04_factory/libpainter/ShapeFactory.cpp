@@ -6,7 +6,7 @@
 #include "ShapeFactory.h"
 #include <sstream>
 #include "Utils.h"
-s
+
 using namespace std;
 
 CShapeFactory::CShapeFactory()

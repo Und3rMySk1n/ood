@@ -7,7 +7,7 @@ CTriangle::CTriangle(Color color, Vertex vertex1, Vertex vertex2, Vertex vertex3
 	, m_vertex2(vertex2)
 	, m_vertex3(vertex3)
 {
-	this->SetColor(color);
+	SetColor(color);
 }
 
 
@@ -17,7 +17,7 @@ CTriangle::~CTriangle()
 
 void CTriangle::Draw(ICanvas &canvas) const
 {
-	canvas.SetColor(this->GetColor());
+	canvas.SetColor(GetColor());
 	canvas.DrawLine(m_vertex1, m_vertex2);
 	canvas.DrawLine(m_vertex2, m_vertex3);
 	canvas.DrawLine(m_vertex3, m_vertex1);
