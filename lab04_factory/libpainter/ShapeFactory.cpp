@@ -43,7 +43,7 @@ CShapeFactory::~CShapeFactory()
 }
 
 
-unique_ptr<CShape> CShapeFactory::GetTriangleWithParams(std::vector<std::string> params) const
+unique_ptr<CShape> CShapeFactory::GetTriangleWithParams(const std::vector<std::string> &params) const
 {
 	Color color = GetColorFromString(params.at(1));
 	Vertex v1 = { stof(params.at(2)), stof(params.at(3)) };
@@ -53,7 +53,7 @@ unique_ptr<CShape> CShapeFactory::GetTriangleWithParams(std::vector<std::string>
 	return make_unique<CTriangle>(color, v1, v2, v3);
 }
 
-std::unique_ptr<CShape> CShapeFactory::GetRectangleWithParams(std::vector<std::string> params) const
+std::unique_ptr<CShape> CShapeFactory::GetRectangleWithParams(const std::vector<std::string> &params) const
 {
 	Color color = GetColorFromString(params.at(1));
 	Vertex leftTop = { stof(params.at(2)), stof(params.at(3)) };
@@ -62,7 +62,7 @@ std::unique_ptr<CShape> CShapeFactory::GetRectangleWithParams(std::vector<std::s
 	return make_unique<CRectangle>(color, leftTop, rightTop);
 }
 
-std::unique_ptr<CShape> CShapeFactory::GetEllipseWithParams(std::vector<std::string> params) const
+std::unique_ptr<CShape> CShapeFactory::GetEllipseWithParams(const std::vector<std::string> &params) const
 {
 	Color color = GetColorFromString(params.at(1));
 	Vertex center = { stof(params.at(2)), stof(params.at(3)) };
@@ -72,7 +72,7 @@ std::unique_ptr<CShape> CShapeFactory::GetEllipseWithParams(std::vector<std::str
 	return make_unique<CEllipse>(color, center, width, height);
 }
 
-std::unique_ptr<CShape> CShapeFactory::GetRegularPolygonWithParams(std::vector<std::string> params) const
+std::unique_ptr<CShape> CShapeFactory::GetRegularPolygonWithParams(const std::vector<std::string> &params) const
 {
 	Color color = GetColorFromString(params.at(1));
 	Vertex center = { stof(params.at(2)), stof(params.at(3)) };

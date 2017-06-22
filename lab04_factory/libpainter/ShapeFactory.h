@@ -13,9 +13,9 @@ public:
 
 	~CShapeFactory();
 private:
-	std::unique_ptr<CShape> GetTriangleWithParams(std::vector<std::string> params) const;
-	std::unique_ptr<CShape> GetRectangleWithParams(std::vector<std::string> params) const;
-	std::unique_ptr<CShape> GetEllipseWithParams(std::vector<std::string> params) const;
-	std::unique_ptr<CShape> GetRegularPolygonWithParams(std::vector<std::string> params) const;
+	std::unique_ptr<CShape> GetTriangleWithParams(const std::vector<std::string> &params) const;
+	std::unique_ptr<CShape> GetRectangleWithParams(const std::vector<std::string> &params) const;
+	std::unique_ptr<CShape> GetEllipseWithParams(const std::vector<std::string> &params) const;
+	std::unique_ptr<CShape> GetRegularPolygonWithParams(const std::vector<std::string> &params) const;
 };
 
