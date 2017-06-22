@@ -16,12 +16,12 @@ struct Triangle_
 {
 	stringstream outputStream;
 	CCanvas canvas{ outputStream };
-	CTriangle triangle{ { 0, 0 }, { 1, 1 }, { 2, 2 } };
+	CTriangle triangle{ Color::black, { 0, 0 }, { 1, 1 }, { 2, 2 } };
 };
 
 BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
 	BOOST_AUTO_TEST_SUITE(when_created)
-		BOOST_AUTO_TEST_CASE(has_black_color)
+		BOOST_AUTO_TEST_CASE(has_custom_color)
 		{
 			BOOST_CHECK_EQUAL(triangle.GetColor(), Color::black);
 		}
@@ -61,14 +61,14 @@ struct Rectangle_
 {
 	stringstream outputStream;
 	CCanvas canvas{ outputStream };
-	CRectangle rectangle{ { (float)0.1, (float)0.2 }, { (float)2.3, (float)2.4 } };
+	CRectangle rectangle{ Color::green, { (float)0.1, (float)0.2 }, { (float)2.3, (float)2.4 } };
 };
 
 BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 	BOOST_AUTO_TEST_SUITE(when_created)
-		BOOST_AUTO_TEST_CASE(has_black_color)
+		BOOST_AUTO_TEST_CASE(has_custom_color)
 		{
-			BOOST_CHECK_EQUAL(rectangle.GetColor(), Color::black);
+			BOOST_CHECK_EQUAL(rectangle.GetColor(), Color::green);
 		}
 		BOOST_AUTO_TEST_CASE(can_change_color)
 		{
@@ -104,14 +104,14 @@ struct Ellipse_
 {
 	stringstream outputStream;
 	CCanvas canvas{ outputStream };
-	CEllipse ellipse{ {0, 1}, (float)5, (float)10 };
+	CEllipse ellipse{ Color::green, {0, 1}, (float)5, (float)10 };
 };
 
 BOOST_FIXTURE_TEST_SUITE(Ellipse, Ellipse_)
-	BOOST_AUTO_TEST_SUITE(when_created)
-		BOOST_AUTO_TEST_CASE(has_black_color)
+	BOOST_AUTO_TEST_SUITE(when_created_with_green_color)
+		BOOST_AUTO_TEST_CASE(has_custom_color)
 		{
-			BOOST_CHECK_EQUAL(ellipse.GetColor(), Color::black);
+			BOOST_CHECK_EQUAL(ellipse.GetColor(), Color::green);
 		}
 		BOOST_AUTO_TEST_CASE(can_change_color)
 		{
@@ -146,14 +146,14 @@ struct RegularPolygon_
 {
 	stringstream outputStream;
 	CCanvas canvas{ outputStream };
-	CRegularPolygon polygon{ {5, 5}, 10, 5 };
+	CRegularPolygon polygon{ Color::pink, {5, 5}, 10, 5 };
 };
 
 	BOOST_FIXTURE_TEST_SUITE(Regular_polygon, RegularPolygon_)
 		BOOST_AUTO_TEST_SUITE(when_created)
-		BOOST_AUTO_TEST_CASE(has_black_color)
+		BOOST_AUTO_TEST_CASE(has_custom_color)
 		{
-			BOOST_CHECK_EQUAL(polygon.GetColor(), Color::black);
+			BOOST_CHECK_EQUAL(polygon.GetColor(), Color::pink);
 		}
 		BOOST_AUTO_TEST_CASE(can_change_color)
 		{

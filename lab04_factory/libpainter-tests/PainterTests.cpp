@@ -25,7 +25,7 @@ BOOST_FIXTURE_TEST_SUITE(Painter, Painter_)
 		BOOST_AUTO_TEST_CASE(draft_with_one_shape)
 		{
 			stringstream input;
-			input << "triangle 0 0 1 1 2 2\n";
+			input << "triangle red 0 0 1 1 2 2\n";
 			draft = designer.CreateDraft(input);
 			painter.DrawPicture(draft, canvas);
 			auto expectedCanvasContent =

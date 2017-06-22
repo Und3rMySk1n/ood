@@ -3,9 +3,9 @@
 
 void CPainter::DrawPicture(CPictureDraft &draft, ICanvas &canvas)
 {
-	for (auto it = draft.begin(); it != draft.end(); it++)
+	for (auto &it : draft)
 	{
-		it->Draw(canvas);
+		it.Draw(canvas);
 	}
 }
 

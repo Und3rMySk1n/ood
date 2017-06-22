@@ -4,7 +4,7 @@ class CEllipse :
 	public CShape
 {
 public:
-	CEllipse(Vertex center, float horizontalRadius, float verticalRadius);
+	CEllipse(Color color, Vertex center, float horizontalRadius, float verticalRadius);
 
 	Vertex GetCenter() const;
 	float GetHorizontalRadius() const;

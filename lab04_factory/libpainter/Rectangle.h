@@ -4,7 +4,7 @@ class CRectangle :
 	public CShape
 {
 public:
-	CRectangle(Vertex leftTop, Vertex rightBottom);
+	CRectangle(Color color, Vertex leftTop, Vertex rightBottom);
 
 	Vertex GetLeftTop() const;
 	Vertex GetRightBottom() const;

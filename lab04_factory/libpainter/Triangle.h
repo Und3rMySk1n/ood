@@ -5,7 +5,7 @@ class CTriangle :
 	public CShape
 {
 public:
-	CTriangle(Vertex vertex1, Vertex vertex2, Vertex vertex3);
+	CTriangle(Color color, Vertex vertex1, Vertex vertex2, Vertex vertex3);
 
 	Vertex GetVertex1() const;
 	Vertex GetVertex2() const;

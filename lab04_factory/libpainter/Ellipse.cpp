@@ -3,6 +3,7 @@
 
 void CEllipse::Draw(ICanvas &canvas) const
 {
+	canvas.SetColor(this->GetColor());
 	canvas.DrawEllipse(m_center, m_horizontalRadius, m_verticalRadius);
 }
 
@@ -21,11 +22,12 @@ float CEllipse::GetVerticalRadius() const
 	return m_verticalRadius;
 }
 
-CEllipse::CEllipse(Vertex center, float horizontalRadius, float verticalRadius)
+CEllipse::CEllipse(Color color, Vertex center, float horizontalRadius, float verticalRadius)
 	: m_center(center)
 	, m_horizontalRadius(horizontalRadius)
 	, m_verticalRadius(verticalRadius)
 {
+	this->SetColor(color);
 }
 
 

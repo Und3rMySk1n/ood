@@ -28,15 +28,18 @@ void CRegularPolygon::Draw(ICanvas &canvas) const
 	{
 		canvas.DrawLine(verticies.at(i), verticies.at(i+1));
 	}
+
+	canvas.SetColor(this->GetColor());
 	canvas.DrawLine(verticies.at(verticies.size() - 1), verticies.at(0));
 }
 
 
-CRegularPolygon::CRegularPolygon(Vertex center, float radius, int vertexCount)
+CRegularPolygon::CRegularPolygon(Color color, Vertex center, float radius, int vertexCount)
 	: m_center(center)
 	, m_radius(radius)
 	, m_vertexCount(vertexCount)
 {
+	this->SetColor(color);
 }
 
 
