@@ -155,7 +155,9 @@
   <ItemGroup>
     <ClInclude Include="GumBallMachineWithDynamicallyCreatedState.h" />
     <ClInclude Include="GumBallMachineWithState.h" />
+    <ClInclude Include="MultiGumBallMachineWithState.h" />
     <ClInclude Include="NaiveGumBallMachine.h" />
+    <ClInclude Include="NaiveMultiGumBallMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

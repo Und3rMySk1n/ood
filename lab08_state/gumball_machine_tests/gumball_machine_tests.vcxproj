@@ -154,13 +154,17 @@
   <ItemGroup>
     <ClInclude Include="..\gumball_machine\GumBallMachineWithDynamicallyCreatedState.h" />
     <ClInclude Include="..\gumball_machine\GumBallMachineWithState.h" />
+    <ClInclude Include="..\gumball_machine\MultiGumBallMachineWithState.h" />
     <ClInclude Include="..\gumball_machine\NaiveGumBallMachine.h" />
+    <ClInclude Include="..\gumball_machine\NaiveMultiGumBallMachine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GumballMachineWithStateTests.cpp" />
     <ClCompile Include="gumball_machine_tests.cpp" />
+    <ClCompile Include="MultiGumBallMachineWithStateTests.cpp" />
+    <ClCompile Include="NaiveMultiGumBallTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

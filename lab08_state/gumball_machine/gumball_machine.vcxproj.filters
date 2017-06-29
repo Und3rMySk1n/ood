@@ -29,5 +29,11 @@
     <ClInclude Include="GumBallMachineWithDynamicallyCreatedState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NaiveMultiGumBallMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiGumBallMachineWithState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

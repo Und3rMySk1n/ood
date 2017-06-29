@@ -33,6 +33,12 @@
     <ClInclude Include="..\gumball_machine\NaiveGumBallMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\gumball_machine\NaiveMultiGumBallMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gumball_machine\MultiGumBallMachineWithState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GumballMachineWithStateTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NaiveMultiGumBallTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiGumBallMachineWithStateTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
