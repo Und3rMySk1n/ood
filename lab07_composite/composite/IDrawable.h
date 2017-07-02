@@ -1,5 +1,5 @@
 #pragma once
-#include "Canvas.h"
+#include "ICanvas.h"
 
 class IDrawable
 {

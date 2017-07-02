@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "CommonTypes.h"
-#include "Canvas.h"
+#include "ICanvas.h"
 #include <memory>
 #include <numeric>
 

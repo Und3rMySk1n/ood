@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Canvas.h"
+#include "ICanvas.h"
 
 namespace version2
 {

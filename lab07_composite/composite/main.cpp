@@ -1,6 +1,6 @@
 ﻿#include <cstdint>
 #include "CommonTypes.h"
-#include "Canvas.h"
+#include "ICanvas.h"
 #include "IDrawable.h"
 #include "Style.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include "Canvas.h"
+#include "ICanvas.h"
 #include "IShape.h"
 
 typedef std::function<void(ICanvas & canvas, const IShape & shape)> DrawingStrategy;
