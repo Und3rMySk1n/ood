@@ -151,6 +151,7 @@
     <ClCompile Include="SimpleShape.cpp" />
     <ClCompile Include="Style.cpp" />
     <ClCompile Include="SVGCanvas.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICanvas.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="SVGCanvas.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="version1.h" />
     <ClInclude Include="version2.h" />
     <ClInclude Include="Vertex.h" />

@@ -4,6 +4,7 @@
 #include "CommonTypes.h"
 #include "SVGCanvas.h"
 #include "Rectangle.h"
+#include "Triangle.h"
 #include "Style.h"
 
 using namespace std;
@@ -25,13 +26,6 @@ int main()
 		}
 
 		CSVGCanvas canvas(canvasFile);
-		canvas.MoveTo(100, 100);
-		canvas.LineTo(200, 150);
-		canvas.SetLineColor(379);
-		canvas.BeginFill(3470);
-		canvas.DrawEllipse(200, 200, 100, 150);
-		canvas.EndFill();
-		canvas.DrawEllipse(400, 400, 50, 150);
 
 		CRectangle rectangle{ {350, 250}, {500, 600} };
 		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, RED_COLOR);
@@ -44,6 +38,12 @@ int main()
 		RectD frame = { 250, 350, 300, 200 };
 		rectangleTwo.SetFrame(frame);
 		rectangleTwo.Draw(canvas);
+
+		CTriangle triangle{ {400, 400}, {500, 300}, {600, 400} };
+		RectD triangleFrame = { 450, 300, 200, 150 };
+		triangle.SetFillStyle(greenFillStyle);
+		triangle.SetFrame(triangleFrame);
+		triangle.Draw(canvas);
 	}
 	catch (exception & e)
 	{

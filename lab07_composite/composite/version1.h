@@ -40,12 +40,6 @@ public:
 	void Draw(const ICanvas & canvas) final;
 };
 
-class CTriangle : public CShape
-{
-public:
-	void Draw(const ICanvas & canvas) final;
-};
-
 class CSlide
 {
 public:
