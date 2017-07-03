@@ -19,6 +19,8 @@ public:
 private:
 	void OpenPath();
 	void ClosePath();
+	void PrintLineStyle();
+
 	int m_lineWidth = 1;
 	RGBAColor m_lineColor = 0;
 	std::ostream &m_output;

@@ -19,8 +19,10 @@ int main()
 		}
 
 		CSVGCanvas canvas(canvasFile);
-		canvas.MoveTo(0, 0);
-		canvas.LineTo(10, 100);
+		canvas.MoveTo(100, 100);
+		canvas.LineTo(200, 150);
+		canvas.SetLineColor(379);
+		canvas.DrawEllipse(200, 200, 100, 150);
 	}
 	catch (exception & e)
 	{
