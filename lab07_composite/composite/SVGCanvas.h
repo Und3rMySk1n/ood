@@ -20,9 +20,11 @@ private:
 	void OpenPath();
 	void ClosePath();
 	void PrintLineStyle();
+	void PrintFillStyle();
 
 	int m_lineWidth = 1;
 	RGBAColor m_lineColor = 0;
+	RGBAColor m_fillColor = NULL;
 	std::ostream &m_output;
 	bool m_pathOpened = false;
 };

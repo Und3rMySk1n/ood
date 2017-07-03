@@ -28,12 +28,12 @@ void CSVGCanvas::SetLineColor(RGBAColor color)
 
 void CSVGCanvas::BeginFill(RGBAColor color)
 {
-
+	m_fillColor = color;
 }
 
 void CSVGCanvas::EndFill()
 {
-
+	m_fillColor = NULL;
 }
 
 void CSVGCanvas::MoveTo(double x, double y)
@@ -63,17 +63,19 @@ void CSVGCanvas::DrawEllipse(double left, double top, double width, double heigh
 		ClosePath();
 	}
 
-	m_output << " <ellipse ";
+	m_output << " <ellipse";
 	PrintLineStyle();
+	PrintFillStyle();
 	m_output << " cx=\"" << left << "\" cy=\"" << top << "\" rx=\"" << width << "\" ry=\"" << height << "\" />" << endl;
 }
 
 void CSVGCanvas::OpenPath()
 {
 	m_pathOpened = true;
-	m_output << "<path ";
+	m_output << "<path";
 	PrintLineStyle();
-	m_output << "d=\"";
+	PrintFillStyle();
+	m_output << " d=\"";
 }
 
 void CSVGCanvas::ClosePath()
@@ -87,5 +89,17 @@ void CSVGCanvas::ClosePath()
 
 void CSVGCanvas::PrintLineStyle()
 {
-	m_output << "stroke=\"#" << std::setfill('0') << std::setw(6) << std::hex << m_lineColor << "\" stroke-width=\"" << m_lineWidth << "\" ";
+	m_output << " stroke=\"#" << std::setfill('0') << std::setw(6) << std::hex << m_lineColor << "\" stroke-width=\"" << m_lineWidth << "\"";
+}
+
+void CSVGCanvas::PrintFillStyle()
+{
+	if (m_fillColor)
+	{
+		m_output << " fill=\"#" << std::setfill('0') << std::setw(6) << std::hex << m_fillColor << "\"";
+	}
+	else
+	{
+		m_output << " fill=\"none\"";
+	}
 }
