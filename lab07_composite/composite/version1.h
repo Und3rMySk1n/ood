@@ -34,12 +34,6 @@ public:
 	virtual ~CShape() = default;
 };
 
-class CRectangle : public CShape
-{
-public:
-	void Draw(const ICanvas & canvas) final;
-};
-
 class CEllipse : public CShape
 {
 public:

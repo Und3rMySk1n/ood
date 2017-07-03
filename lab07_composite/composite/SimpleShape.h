@@ -1,15 +1,27 @@
 #pragma once
-#include <functional>
 #include "ICanvas.h"
 #include "IShape.h"
-
-typedef std::function<void(ICanvas & canvas, const IShape & shape)> DrawingStrategy;
 
 class CSimpleShape : public IShape
 {
 public:
-	CSimpleShape(const DrawingStrategy & drawingStrategy)
-	{
-		(void)&drawingStrategy;
-	}
+	CSimpleShape();
+	
+	virtual std::shared_ptr<IStyle> GetOutlineStyle() override;
+	virtual const std::shared_ptr<IStyle> GetOutlineStyle()const override;
+
+	virtual std::shared_ptr<IStyle> GetFillStyle() override;
+	virtual const std::shared_ptr<IStyle> GetFillStyle()const override;
+
+	virtual std::shared_ptr<IGroupShape> GetGroup() override;
+	virtual std::shared_ptr<const IGroupShape> GetGroup() const override;
+
+	void SetOutlineStyle(const std::shared_ptr<IStyle> &style);
+	void SetFillStyle(const std::shared_ptr<IStyle> &style);
+	void SetCanvasStyles(ICanvas & canvas);
+
+protected:
+	std::shared_ptr<IStyle> m_outlineStyle;
+	std::shared_ptr<IStyle> m_fillStyle;
+	std::shared_ptr<IGroupShape> m_group;
 };

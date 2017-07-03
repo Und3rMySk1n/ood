@@ -147,6 +147,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="SimpleShape.cpp" />
+    <ClCompile Include="Style.cpp" />
     <ClCompile Include="SVGCanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,12 +162,14 @@
     <ClInclude Include="IShapes.h" />
     <ClInclude Include="ISlide.h" />
     <ClInclude Include="IStyle.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SimpleShape.h" />
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="SVGCanvas.h" />
     <ClInclude Include="version1.h" />
     <ClInclude Include="version2.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

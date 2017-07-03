@@ -19,6 +19,6 @@ public:
 
 	virtual std::shared_ptr<IGroupShape> GetGroup() = 0;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const = 0;
-
+	
 	virtual ~IShape() = default;
 };

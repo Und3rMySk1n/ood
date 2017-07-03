@@ -67,6 +67,7 @@ void CSVGCanvas::DrawEllipse(double left, double top, double width, double heigh
 	PrintLineStyle();
 	PrintFillStyle();
 	m_output << " cx=\"" << left << "\" cy=\"" << top << "\" rx=\"" << width << "\" ry=\"" << height << "\" />" << endl;
+	ClosePath();
 }
 
 void CSVGCanvas::OpenPath()
@@ -84,6 +85,7 @@ void CSVGCanvas::ClosePath()
 	{
 		m_output << "\" />" << endl;
 		m_pathOpened = false;
+		EndFill();
 	}
 }
 

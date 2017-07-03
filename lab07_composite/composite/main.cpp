@@ -1,7 +1,10 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <memory>
 #include "CommonTypes.h"
 #include "SVGCanvas.h"
+#include "Rectangle.h"
+#include "Style.h"
 
 using namespace std;
 
@@ -26,6 +29,16 @@ int main()
 		canvas.DrawEllipse(200, 200, 100, 150);
 		canvas.EndFill();
 		canvas.DrawEllipse(400, 400, 50, 150);
+
+		CRectangle rectangle{ {350, 250}, {500, 600} };
+		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, 14296871);
+		rectangle.SetFillStyle(redFillStyle);
+		rectangle.Draw(canvas);
+
+		CRectangle rectangleTwo{ { 300, 300 },{ 600, 400 } };
+		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, 10930456);
+		rectangleTwo.SetOutlineStyle(greenFillStyle);
+		rectangleTwo.Draw(canvas);
 	}
 	catch (exception & e)
 	{

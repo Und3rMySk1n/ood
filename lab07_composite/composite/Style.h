@@ -4,26 +4,14 @@
 class CStyle : public IStyle
 {
 public:
-	virtual optional<bool> IsEnabled()const override
-	{
-		return m_isEnabled;
-	}
+	CStyle(bool isEnabled, RGBAColor color);
 
-	virtual void Enable(bool enable) override
-	{
-		m_isEnabled = enable;
-	}
+	virtual optional<bool> IsEnabled()const override;
+	virtual void Enable(bool enable) override;
 
-	virtual optional<RGBAColor> GetColor()const override
-	{
-		return m_color;
-	}
-
-	virtual void SetColor(RGBAColor color) override
-	{
-		m_color = color;
-	}
+	virtual RGBAColor GetColor()const override;
+	virtual void SetColor(RGBAColor color) override;
 private:
 	bool m_isEnabled = false;
-	RGBAColor m_color;
+	RGBAColor m_color = 0;
 };
