@@ -5,6 +5,7 @@
 #include "SVGCanvas.h"
 #include "Rectangle.h"
 #include "Triangle.h"
+#include "Ellipse.h"
 #include "Style.h"
 
 using namespace std;
@@ -44,6 +45,12 @@ int main()
 		triangle.SetFillStyle(greenFillStyle);
 		triangle.SetFrame(triangleFrame);
 		triangle.Draw(canvas);
+
+		CEllipse ellipse{ {900, 300}, 100, 150 };
+		RectD ellipseFrame = { 800, 150, 200, 200 };
+		ellipse.SetFrame(ellipseFrame);
+		ellipse.SetFillStyle(redFillStyle);
+		ellipse.Draw(canvas);
 	}
 	catch (exception & e)
 	{

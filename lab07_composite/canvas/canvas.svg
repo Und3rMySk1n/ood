@@ -2,4 +2,5 @@
 <path stroke="#000000" stroke-width="1" fill="#da2727" d="M 350,250 L 500,250 L 500,600 L 350,600 L 350,250 " />
 <path stroke="#a6c918" stroke-width="1" fill="none" d="M 250,350 L 550,350 L 550,550 L 250,550 L 250,350 " />
 <path stroke="#000000" stroke-width="1" fill="#a6c918" d="M 450,450 L 550,300 L 650,450 L 450,450 " />
+ <ellipse stroke="#000000" stroke-width="1" fill="#da2727" cx="900" cy="250" rx="100" ry="100" />
 </svg>

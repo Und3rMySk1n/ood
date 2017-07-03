@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SimpleShape.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="ICanvas.h" />
     <ClInclude Include="CommonTypes.h" />
     <ClInclude Include="GroupShape.h" />

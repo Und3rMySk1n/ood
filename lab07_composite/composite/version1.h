@@ -34,12 +34,6 @@ public:
 	virtual ~CShape() = default;
 };
 
-class CEllipse : public CShape
-{
-public:
-	void Draw(const ICanvas & canvas) final;
-};
-
 class CSlide
 {
 public:
