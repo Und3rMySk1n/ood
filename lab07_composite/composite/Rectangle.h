@@ -17,4 +17,6 @@ private:
 	Vertex m_leftTop;
 	Vertex m_rightBottom;
 	RectD m_frame = { 0, 0, 0, 0 };
+
+	void CalculateFrame();
 };

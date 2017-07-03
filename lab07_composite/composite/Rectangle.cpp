@@ -5,6 +5,7 @@ CRectangle::CRectangle(Vertex leftTop, Vertex rightBottom)
 	: m_leftTop(leftTop)
 	, m_rightBottom(rightBottom)
 {
+	CalculateFrame();
 }
 
 
@@ -29,5 +30,15 @@ RectD CRectangle::GetFrame()
 
 void CRectangle::SetFrame(const RectD & rect)
 {
-	m_frame = rect;
+	m_leftTop = { rect.left, rect.top };
+	m_rightBottom = { m_leftTop.x + rect.width, m_leftTop.y + rect.height };
+	CalculateFrame();
+}
+
+void CRectangle::CalculateFrame()
+{
+	double width = m_rightBottom.x - m_leftTop.x;
+	double height = m_rightBottom.y - m_leftTop.y;
+
+	m_frame = { m_leftTop.x, m_leftTop.y, width, height };
 }

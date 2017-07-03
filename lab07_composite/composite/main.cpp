@@ -8,6 +8,9 @@
 
 using namespace std;
 
+const int RED_COLOR = 14296871;
+const int YELLOW_COLOR = 10930456;
+
 int main()
 {
 	cout << "Composite program starts" << endl;
@@ -31,13 +34,15 @@ int main()
 		canvas.DrawEllipse(400, 400, 50, 150);
 
 		CRectangle rectangle{ {350, 250}, {500, 600} };
-		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, 14296871);
+		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, RED_COLOR);
 		rectangle.SetFillStyle(redFillStyle);
 		rectangle.Draw(canvas);
 
 		CRectangle rectangleTwo{ { 300, 300 },{ 600, 400 } };
-		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, 10930456);
+		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, YELLOW_COLOR);
 		rectangleTwo.SetOutlineStyle(greenFillStyle);
+		RectD frame = { 250, 350, 300, 200 };
+		rectangleTwo.SetFrame(frame);
 		rectangleTwo.Draw(canvas);
 	}
 	catch (exception & e)
