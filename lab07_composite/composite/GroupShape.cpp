@@ -12,22 +12,22 @@ void CGroupShape::Draw(ICanvas & canvas)
 
 shared_ptr<IStyle> CGroupShape::GetOutlineStyle()
 {
-	return nullptr;
+	return CalculateOutlineStyle();
 }
 
 const shared_ptr<IStyle> CGroupShape::GetOutlineStyle()const
 {
-	return nullptr;
+	return CalculateOutlineStyle();
 }
 
 shared_ptr<IStyle> CGroupShape::GetFillStyle()
 {
-	return nullptr;
+	return CalculateFillStyle();
 }
 
 const shared_ptr<IStyle> CGroupShape::GetFillStyle()const
 {
-	return nullptr;
+	return CalculateFillStyle();
 }
 
 shared_ptr<IGroupShape> CGroupShape::GetGroup()
@@ -113,5 +113,73 @@ void CGroupShape::CalculateFrame()
 		}
 
 		m_frame = { minX, minY, maxX - minX, maxY - minY };
+	}
+}
+
+shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
+{
+	if (m_shapes.empty())
+	{
+		return nullptr;
+	}
+
+	bool sameStyle = true;
+	auto &style = m_shapes.at(0)->GetOutlineStyle();
+
+	for (auto & shape : m_shapes)
+	{
+		auto shapeStyle = shape->GetOutlineStyle();
+		if (shapeStyle->GetColor() != style->GetColor() || shapeStyle->IsEnabled() != style->IsEnabled())
+		{
+			sameStyle = false;
+			break;
+		}
+	}
+
+	return (sameStyle) ? style : nullptr;
+}
+
+shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
+{
+	if (m_shapes.empty())
+	{
+		return nullptr;
+	}
+
+	bool sameStyle = true;
+	auto &style = m_shapes.at(0)->GetFillStyle();
+
+	for (auto & shape : m_shapes)
+	{
+		auto shapeStyle = shape->GetFillStyle();
+		if (shapeStyle->GetColor() != style->GetColor() || shapeStyle->IsEnabled() != style->IsEnabled())
+		{
+			sameStyle = false;
+			break;
+		}
+	}
+
+	return (sameStyle) ? style : nullptr;
+}
+
+void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
+{
+	if (!m_shapes.empty())
+	{
+		for (shared_ptr<IShape> &shape : m_shapes)
+		{
+			shape->SetOutlineStyle(style);
+		}
+	}
+}
+
+void CGroupShape::SetFillStyle(const std::shared_ptr<IStyle> &style)
+{
+	if (!m_shapes.empty())
+	{
+		for (shared_ptr<IShape> &shape : m_shapes)
+		{
+			shape->SetFillStyle(style);
+		}
 	}
 }

@@ -16,8 +16,8 @@ public:
 	virtual std::shared_ptr<IGroupShape> GetGroup() override;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const override;
 
-	void SetOutlineStyle(const std::shared_ptr<IStyle> &style);
-	void SetFillStyle(const std::shared_ptr<IStyle> &style);
+	void SetOutlineStyle(const std::shared_ptr<IStyle> &style) override;
+	void SetFillStyle(const std::shared_ptr<IStyle> &style) override;
 	void SetCanvasStyles(ICanvas & canvas);
 
 protected:

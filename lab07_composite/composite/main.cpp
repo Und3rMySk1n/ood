@@ -14,6 +14,7 @@ using namespace std;
 const int RED_COLOR = 14296871;
 const int GREEN_COLOR = 10930456;
 const int YELLOW_COLOR = 15657729;
+const int BLUE_COLOR = 1402838;
 
 int main()
 {
@@ -33,6 +34,7 @@ int main()
 		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, GREEN_COLOR);
 		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, RED_COLOR);
 		shared_ptr<IStyle> yellowFillStyle = make_shared<CStyle>(true, YELLOW_COLOR);
+		shared_ptr<IStyle> blueFillStyle = make_shared<CStyle>(true, BLUE_COLOR);
 
 		auto sail = make_shared<CTriangle>(Vertex{ 200, 50 }, Vertex{ 280, 200 }, Vertex{ 190, 220 });
 		sail->SetFillStyle(greenFillStyle);
@@ -65,9 +67,15 @@ int main()
 
 		RectD frame = ship->GetFrame();
 		cout << frame.left << endl << frame.top << endl << frame.width << endl << frame.height << endl;
-		RectD newFrame = { 500, 50, 340, 220 };		
+		RectD newFrame = { 500, 50, 340, 220 };
 
 		ship->SetFrame(newFrame);
+		ship->Draw(canvas);
+
+		newFrame = { 900, 50, 170, 220 };
+		ship->SetFrame(newFrame);
+		ship->SetFillStyle(blueFillStyle);
+		ship->SetOutlineStyle(blueFillStyle);
 		ship->Draw(canvas);
 	}
 	catch (exception & e)
