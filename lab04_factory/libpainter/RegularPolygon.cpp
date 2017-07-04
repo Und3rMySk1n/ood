@@ -23,14 +23,17 @@ int CRegularPolygon::GetVertexCount() const
 
 void CRegularPolygon::Draw(ICanvas &canvas) const
 {
+	canvas.BeginDraw();
+	canvas.SetColor(GetColor());
+
 	vector<Vertex> verticies = GetVerticies();
 	for (int i = 0; i < (verticies.size() - 1); ++i)
 	{
 		canvas.DrawLine(verticies.at(i), verticies.at(i+1));
 	}
 
-	canvas.SetColor(GetColor());
 	canvas.DrawLine(verticies.at(verticies.size() - 1), verticies.at(0));
+	canvas.EndDraw();
 }
 
 

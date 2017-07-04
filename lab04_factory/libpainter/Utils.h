@@ -21,6 +21,20 @@ static Color GetColorFromString(string colorAsString)
 	return colorsTable.at(colorAsString);
 }
 
+static string ColorAsString(Color color)
+{
+	map<Color, string> colorsTable = {
+		{ Color::black, "black" },
+		{ Color::blue, "blue" },
+		{ Color::green, "green" },
+		{ Color::pink, "pink" },
+		{ Color::red, "red" },
+		{ Color::yellow, "yellow" }
+	};
+
+	return colorsTable.at(color);
+}
+
 static vector<string> GetParamsFromString(const string &paramsAsString)
 {
 	stringstream paramsAsStream(paramsAsString);

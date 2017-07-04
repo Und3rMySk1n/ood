@@ -2,18 +2,26 @@
 //
 
 #include "stdafx.h"
-#include "../libpainter/Canvas.h"
+#include "../libpainter/SVGCanvas.h"
 #include "../libpainter/Painter.h"
 #include "../libpainter/Designer.h"
 #include "../libpainter/ShapeFactory.h"
 #include "../libpainter/PictureDraft.h"
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
 int main()
 {
-	CCanvas canvas{ cout };
+	string canvasFileName = "../canvas/canvas.svg";
+	ofstream canvasFile(canvasFileName.c_str());
+	if (!canvasFile.is_open())
+	{
+		throw runtime_error("Error while opening file for canvas.");
+	}
+	CSVGCanvas canvas(canvasFile);
+
 	CPainter painter;
 	CPictureDraft draft;
 	CShapeFactory shapeFactory;

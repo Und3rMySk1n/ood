@@ -18,11 +18,13 @@ void CRectangle::Draw(ICanvas &canvas) const
 	Vertex rightTop = { m_rightBottom.x, m_leftTop.y };
 	Vertex leftBottom = { m_leftTop.x, m_rightBottom.y };
 
+	canvas.BeginDraw();
 	canvas.SetColor(GetColor());
 	canvas.DrawLine(m_leftTop, rightTop);
 	canvas.DrawLine(rightTop, m_rightBottom);
 	canvas.DrawLine(m_rightBottom, leftBottom);
 	canvas.DrawLine(leftBottom, m_leftTop);
+	canvas.EndDraw();
 }
 
 CRectangle::CRectangle(Color color, Vertex leftTop, Vertex rightBottom)

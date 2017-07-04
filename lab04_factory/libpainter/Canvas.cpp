@@ -25,4 +25,10 @@ void CCanvas::DrawEllipse(const Vertex center, float width, float height)
 	m_output << "Ellipse: [" << center.x << ", " << center.y << "], Width: " << width << ", Height: " << height << "\n";
 }
 
+void CCanvas::BeginDraw()
+{
+}
 
+void CCanvas::EndDraw()
+{
+}
