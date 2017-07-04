@@ -7,11 +7,13 @@
 #include "Triangle.h"
 #include "Ellipse.h"
 #include "Style.h"
+#include "GroupShape.h"
 
 using namespace std;
 
 const int RED_COLOR = 14296871;
-const int YELLOW_COLOR = 10930456;
+const int GREEN_COLOR = 10930456;
+const int YELLOW_COLOR = 15657729;
 
 int main()
 {
@@ -28,29 +30,45 @@ int main()
 
 		CSVGCanvas canvas(canvasFile);
 
-		CRectangle rectangle{ {350, 250}, {500, 600} };
+		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, GREEN_COLOR);
 		shared_ptr<IStyle> redFillStyle = make_shared<CStyle>(true, RED_COLOR);
-		rectangle.SetFillStyle(redFillStyle);
-		rectangle.Draw(canvas);
+		shared_ptr<IStyle> yellowFillStyle = make_shared<CStyle>(true, YELLOW_COLOR);
 
-		CRectangle rectangleTwo{ { 300, 300 },{ 600, 400 } };
-		shared_ptr<IStyle> greenFillStyle = make_shared<CStyle>(true, YELLOW_COLOR);
-		rectangleTwo.SetOutlineStyle(greenFillStyle);
-		RectD frame = { 250, 350, 300, 200 };
-		rectangleTwo.SetFrame(frame);
-		rectangleTwo.Draw(canvas);
+		auto sail = make_shared<CTriangle>(Vertex{ 200, 50 }, Vertex{ 280, 200 }, Vertex{ 190, 220 });
+		sail->SetFillStyle(greenFillStyle);
+		sail->SetOutlineStyle(greenFillStyle);
 
-		CTriangle triangle{ {400, 400}, {500, 300}, {600, 400} };
-		RectD triangleFrame = { 450, 300, 200, 150 };
-		triangle.SetFillStyle(greenFillStyle);
-		triangle.SetFrame(triangleFrame);
-		triangle.Draw(canvas);
+		auto boatPartOne = make_shared<CRectangle>(Vertex{ 170, 220 }, Vertex{ 290, 270 });
+		boatPartOne->SetFillStyle(redFillStyle);
+		boatPartOne->SetOutlineStyle(redFillStyle);
 
-		CEllipse ellipse{ {900, 300}, 100, 150 };
-		RectD ellipseFrame = { 800, 150, 200, 200 };
-		ellipse.SetFrame(ellipseFrame);
-		ellipse.SetFillStyle(redFillStyle);
-		ellipse.Draw(canvas);
+		auto boatPartTwo = make_shared<CTriangle>(Vertex{ 170, 220 }, Vertex{ 170, 270 }, Vertex{ 160, 220 });
+		boatPartTwo->SetFillStyle(redFillStyle);
+		boatPartTwo->SetOutlineStyle(redFillStyle);
+
+		auto boatPartThree = make_shared<CTriangle>(Vertex{ 170, 220 }, Vertex{ 330, 205 }, Vertex{ 290, 270 });
+		boatPartThree->SetFillStyle(redFillStyle);
+		boatPartThree->SetOutlineStyle(redFillStyle);
+
+		auto sun = make_shared<CEllipse>(Vertex{ 300, 70 }, 30, 30);
+		sun->SetFillStyle(yellowFillStyle);
+		sun->SetOutlineStyle(yellowFillStyle);
+		sun->Draw(canvas);
+
+		auto ship = make_shared<CGroupShape>();
+		ship->InsertShape(sail);
+		ship->InsertShape(boatPartOne);
+		ship->InsertShape(boatPartTwo);
+		ship->InsertShape(boatPartThree);
+
+		ship->Draw(canvas);
+
+		RectD frame = ship->GetFrame();
+		cout << frame.left << endl << frame.top << endl << frame.width << endl << frame.height << endl;
+		RectD newFrame = { 500, 50, 340, 220 };		
+
+		ship->SetFrame(newFrame);
+		ship->Draw(canvas);
 	}
 	catch (exception & e)
 	{

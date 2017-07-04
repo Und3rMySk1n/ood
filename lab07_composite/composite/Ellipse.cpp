@@ -20,7 +20,7 @@ void CEllipse::Draw(ICanvas & canvas)
 	canvas.DrawEllipse(m_center.x, m_center.y, m_radiusX, m_radiusY);
 }
 
-RectD CEllipse::GetFrame()
+RectD CEllipse::GetFrame()const
 {
 	return m_frame;
 }

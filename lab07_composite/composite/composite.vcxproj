@@ -147,9 +147,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="GroupShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SimpleShape.cpp" />
+    <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Style.cpp" />
     <ClCompile Include="SVGCanvas.cpp" />
     <ClCompile Include="Triangle.cpp" />

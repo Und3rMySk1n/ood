@@ -23,7 +23,7 @@ void CRectangle::Draw(ICanvas & canvas)
 	canvas.LineTo(m_leftTop.x, m_leftTop.y);
 }
 
-RectD CRectangle::GetFrame()
+RectD CRectangle::GetFrame()const
 {
 	return m_frame;
 }

@@ -31,12 +31,12 @@ const std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()const
 
 std::shared_ptr<IGroupShape> CSimpleShape::GetGroup()
 {
-	return m_group;
+	return nullptr;
 }
 
 std::shared_ptr<const IGroupShape> CSimpleShape::GetGroup() const
 {
-	return m_group;
+	return nullptr;
 }
 
 void CSimpleShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)

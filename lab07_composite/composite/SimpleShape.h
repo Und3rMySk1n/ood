@@ -23,5 +23,4 @@ public:
 protected:
 	std::shared_ptr<IStyle> m_outlineStyle;
 	std::shared_ptr<IStyle> m_fillStyle;
-	std::shared_ptr<IGroupShape> m_group;
 };

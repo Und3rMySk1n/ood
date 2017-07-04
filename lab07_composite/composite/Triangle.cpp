@@ -26,7 +26,7 @@ void CTriangle::Draw(ICanvas & canvas)
 	canvas.LineTo(m_one.x, m_one.y);
 }
 
-RectD CTriangle::GetFrame()
+RectD CTriangle::GetFrame()const
 {
 	return m_frame;
 }

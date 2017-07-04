@@ -9,7 +9,7 @@ public:
 
 	void Draw(ICanvas & canvas) final;
 
-	virtual RectD GetFrame() final;
+	virtual RectD GetFrame()const final;
 	virtual void SetFrame(const RectD & rect) final;
 
 	~CTriangle();
