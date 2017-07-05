@@ -26,6 +26,7 @@ protected:
 private:
 	void SetSolutionText(const std::wstring & text);
 	void SetEquationText(const std::wstring & text);
+	void SetRadioChangeText(const std::wstring & text);
 	void UpdateEquation();
 	void OnChangeCoeffA();
 	void OnChangeCoeffB();
@@ -50,4 +51,7 @@ private:
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnRadio1Clicked();
+	afx_msg void OnRadio2Clicked();
 };

@@ -60,6 +60,8 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialogEx)
 	ON_EN_KILLFOCUS(IDC_COEFF_A, &CMainDlg::OnKillfocusCoeffA)
 	ON_EN_KILLFOCUS(IDC_COEFF_B, &CMainDlg::OnKillfocusCoeffB)
 	ON_EN_KILLFOCUS(IDC_COEFF_C, &CMainDlg::OnKillfocusCoeffC)
+	ON_BN_CLICKED(IDC_RADIO1, &CMainDlg::OnRadio1Clicked)
+	ON_BN_CLICKED(IDC_RADIO2, &CMainDlg::OnRadio2Clicked)
 END_MESSAGE_MAP()
 
 
@@ -87,6 +89,11 @@ void CMainDlg::SetSolutionText(const std::wstring & text)
 void CMainDlg::SetEquationText(const std::wstring & text)
 {
 	SetDlgItemText(IDC_EQUATION, text.c_str());
+}
+
+void CMainDlg::SetRadioChangeText(const std::wstring & text)
+{
+	SetDlgItemText(IDC_TEST_STATIC, text.c_str());
 }
 
 void CMainDlg::UpdateEquation()
@@ -171,4 +178,16 @@ void CMainDlg::OnKillfocusCoeffB()
 void CMainDlg::OnKillfocusCoeffC()
 {
 	OnChangeCoeffC();
+}
+
+
+void CMainDlg::OnRadio1Clicked()
+{
+	SetRadioChangeText(L"Option radio one!");
+}
+
+
+void CMainDlg::OnRadio2Clicked()
+{
+	SetRadioChangeText(L"Option radio two!");
 }
