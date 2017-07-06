@@ -31,6 +31,7 @@ private:
 	void OnChangeCoeffA();
 	void OnChangeCoeffB();
 	void OnChangeCoeffC();
+	void DrawChart();
 
 	void OnOK()final;
 
@@ -44,7 +45,8 @@ private:
 	double m_coeffA = 0;
 	double m_coeffB = 0;
 	double m_coeffC = 0;
-
+	CStatic m_drawArea;
+	
 	HICON m_hIcon;
 
 	// Generated message map functions

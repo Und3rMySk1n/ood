@@ -20,6 +20,7 @@ CMainDlg::CMainDlg(CEquationSolver & solver, IMainDlgController & controller, CW
 	, m_coeffA(solver.GetQuadraticCoeff())
 	, m_coeffB(solver.GetLinearCoeff())
 	, m_coeffC(solver.GetConstantCoeff())
+	, m_drawArea()
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -54,6 +55,7 @@ void CMainDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_COEFF_A, m_coeffA);
 	DDX_Text(pDX, IDC_COEFF_B, m_coeffB);
 	DDX_Text(pDX, IDC_COEFF_C, m_coeffC);
+	DDX_Control(pDX, IDC_GRAPH, m_drawArea);
 }
 
 BEGIN_MESSAGE_MAP(CMainDlg, CDialogEx)
@@ -96,6 +98,40 @@ void CMainDlg::SetRadioChangeText(const std::wstring & text)
 	SetDlgItemText(IDC_TEST_STATIC, text.c_str());
 }
 
+void CMainDlg::DrawChart()
+{
+	//—оздаем контекст, в котором будем рисовать
+	CClientDC dc(&m_drawArea);
+
+	//”знаем размеры пр€моугольника
+	CRect rc;
+	m_drawArea.GetClientRect(&rc);
+	int w = rc.Width();
+	int h = rc.Height();
+
+	int x_start = 10;
+	int y_start = h - 10;
+
+	//–исуем Е
+	CPen pnPenBlack(PS_SOLID, 1, RGB(0, 0, 0));
+	CPen * pOldPen = dc.SelectObject(&pnPenBlack);
+	dc.FillSolidRect(rc, RGB(255, 255, 255));
+	dc.MoveTo(x_start - 5, y_start);
+	dc.LineTo(x_start + w - 15, y_start);
+	dc.MoveTo(x_start, y_start + 5);
+	dc.LineTo(x_start, y_start - h + 15);
+	CPen pnPenRed(PS_SOLID, 1, RGB(255, 0, 0));
+	dc.SelectObject(&pnPenRed);
+	dc.MoveTo(x_start, y_start);
+	for (int i = 3; i < w - x_start - 2; i += 3)
+	{
+		dc.LineTo(x_start + i, y_start - int(h / 3 * (1 - sin((float)i))));
+	}
+	dc.SelectObject(pOldPen);
+
+	SetRadioChangeText((boost::wformat(L"Width: %1% Height: %2%") % w % h).str());
+}
+
 void CMainDlg::UpdateEquation()
 {
 	auto solution = m_solver.GetEquationRoots();
@@ -135,6 +171,7 @@ void CMainDlg::UpdateEquation()
 	};
 
 	SetEquationText((boost::wformat(L"%1%x\u00b2 %2%x %3% = 0") % m_solver.GetQuadraticCoeff() % ToSignedString(m_solver.GetLinearCoeff()) % ToSignedString(m_solver.GetConstantCoeff())).str());
+	DrawChart();
 }
 
 void CMainDlg::OnChangeCoeffA()
@@ -184,10 +221,12 @@ void CMainDlg::OnKillfocusCoeffC()
 void CMainDlg::OnRadio1Clicked()
 {
 	SetRadioChangeText(L"Option radio one!");
+	UpdateEquation();
 }
 
 
 void CMainDlg::OnRadio2Clicked()
 {
 	SetRadioChangeText(L"Option radio two!");
+	UpdateEquation();
 }
