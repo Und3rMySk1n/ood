@@ -39,6 +39,9 @@
     <ClInclude Include="..\lwtask\ShapeDrawingAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\lwtask\ShapeDrawingClassAdapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\lwtask\ShapeDrawingAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lwtask\ShapeDrawingClassAdapter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

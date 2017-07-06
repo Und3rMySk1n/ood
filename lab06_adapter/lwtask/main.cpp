@@ -16,7 +16,15 @@ int main()
 	string userInput;
 	if (getline(cin, userInput) && (userInput == "y" || userInput == "Y"))
 	{
-		app::PaintPictureOnModernGraphicsRenderer(cout);
+		cout << "Should we use class adapter (y)?";
+		if (getline(cin, userInput) && (userInput == "y" || userInput == "Y"))
+		{
+			app::PaintPictureOnModernGraphicsRendererWithClassAdapter(cout);
+		}
+		else
+		{
+			app::PaintPictureOnModernGraphicsRenderer(cout);
+		}
 	}
 	else
 	{

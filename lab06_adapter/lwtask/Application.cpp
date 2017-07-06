@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "ShapeDrawingAdapter.h"
+#include "ShapeDrawingClassAdapter.h"
 
 // Пространство имен приложения (доступно для модификации)
 namespace app
@@ -32,5 +33,15 @@ namespace app
 		renderer.BeginDraw();
 		PaintPicture(painter);
 		renderer.EndDraw();
+	}
+
+	void PaintPictureOnModernGraphicsRendererWithClassAdapter(std::ostream& outputStream)
+	{
+		CShapeDrawingClassAdapter canvas(outputStream);
+		shape_drawing_lib::CCanvasPainter painter(canvas);
+
+		canvas.BeginDraw();
+		PaintPicture(painter);
+		canvas.EndDraw();
 	}
 }
