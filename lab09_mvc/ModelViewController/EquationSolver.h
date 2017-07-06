@@ -17,8 +17,7 @@ public:
 	typedef sig::signal<void()> SolutionChangeSignal;
 	sig::connection DoOnSolutionChange(const SolutionChangeSignal::slot_type & handler);
 
-	EquationRoots GetEquationRoots()const;
-	std::vector<std::pair<float, float>> GetChartPoints()const;
+	std::vector<std::pair<double, double>> GetChartPoints()const;
 
 	double GetQuadraticCoeff()const;
 	void SetQuadraticCoeff(double a);
@@ -38,7 +37,7 @@ private:
 	double m_a = 0;
 	double m_b = 0;
 	double m_c = 0;
-	int m_frequency = 10;
+	int m_frequency = 100;
 	int m_horizontalLimit = 5;
 	FunctionType m_function = FunctionType::SIN;
 

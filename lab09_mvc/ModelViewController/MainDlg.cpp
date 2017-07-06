@@ -113,7 +113,8 @@ void CMainDlg::DrawChart()
 	int x_start = 10;
 	int y_start = h / 2;
 
-	int horizontalCoef = (w - 20) / m_solver.GetHorizontalLimit();
+	double horizontalCoef = ((double)w - 2.0 * (double)x_start) / m_solver.GetHorizontalLimit();
+	double verticalCoef = ((double)h / 2.0) / m_solver.GetQuadraticCoeff();
 
 	//Drawing chart rulers
 	CPen pnPenBlack(PS_SOLID, 1, RGB(0, 0, 0));
@@ -129,10 +130,10 @@ void CMainDlg::DrawChart()
 	dc.SelectObject(&pnPenRed);
 	dc.MoveTo(x_start, y_start);
 
-	std::vector<std::pair<float, float>> chartPoints = m_solver.GetChartPoints();
+	std::vector<std::pair<double, double>> chartPoints = m_solver.GetChartPoints();
 	for (auto point : chartPoints)
 	{
-		dc.LineTo((float)x_start + (point.first * horizontalCoef), ((float)y_start + point.second) * 1.5);
+		dc.LineTo((double)x_start + (point.first * horizontalCoef), (double)y_start + (point.second * verticalCoef));
 	}
 
 	dc.SelectObject(pOldPen);

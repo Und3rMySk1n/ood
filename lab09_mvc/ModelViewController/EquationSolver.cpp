@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "EquationSolver.h"
 #include "FunctionType.h"
+#include <cmath>
 
 using namespace std;
 
@@ -18,56 +19,21 @@ sig::connection CEquationSolver::DoOnSolutionChange(const SolutionChangeSignal::
 	return m_solutionChanged.connect(handler);
 }
 
-EquationRoots CEquationSolver::GetEquationRoots() const
+vector<std::pair<double, double>> CEquationSolver::GetChartPoints()const
 {
-	const auto epsilon = std::numeric_limits<double>::epsilon();
-	if (std::abs(m_a) > epsilon)
-	{
-		double discr = m_b * m_b - 4 * m_a * m_c;
-		if (discr < 0)
-		{
-			return NoRealRoots();
-		}
-		else if (discr < std::numeric_limits<double>::epsilon())
-		{
-			return (-m_b + std::sqrt(discr)) / (2 * m_a);
-		}
-		else
-		{
-			return std::make_pair((-m_b - std::sqrt(discr)) / (2 * m_a),
-				(-m_b + std::sqrt(discr)) / (2 * m_a));
-		}
-	}
-	// linear equation b*x + c = 0
-	if (std::abs(m_b) >= epsilon)
-	{
-		return -m_c / m_b;
-	}
-	else if (std::abs(m_c) >= epsilon)
-	{
-		return NoRealRoots();
-	}
-	else // 0*x = 0
-	{
-		return InfiniteNumberOfRoots();
-	}
+	vector<std::pair<double, double>> result;
 
-}
-
-vector<std::pair<float, float>> CEquationSolver::GetChartPoints()const
-{
-	vector<std::pair<float, float>> result;
-
-	float step = 0.5;
+	float step = (double)(m_horizontalLimit / m_frequency);
 	int x = 0;
+
 	for (int i = 0; i <= m_frequency; i++)
 	{
-		std::pair<float, float> point;
-		point.first = x;
-		point.second = m_a * sinf(m_b * x + m_c);
+		std::pair<double, double> point;
+		point.first = (float)x;
+		point.second = (m_function == FunctionType::SIN) ? m_a * sinf(m_b * x + m_c) : m_a * cosf(m_b * x + m_c);		
 
 		result.push_back(point);
-		x = x + step;
+		x += step;
 	}
 
 	return result;
