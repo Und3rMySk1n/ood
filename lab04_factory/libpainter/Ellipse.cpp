@@ -36,8 +36,3 @@ CEllipse::CEllipse(Color color, Vertex center, float horizontalRadius, float ver
 CEllipse::~CEllipse()
 {
 }
-
-unique_ptr<CShape> CEllipse::Clone() const
-{
-	return make_unique<CEllipse>(*this);
-}

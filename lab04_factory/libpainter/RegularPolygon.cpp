@@ -69,8 +69,3 @@ vector<Vertex> CRegularPolygon::GetVerticies() const
 
 	return verticies;
 }
-
-unique_ptr<CShape> CRegularPolygon::Clone() const
-{
-	return make_unique<CRegularPolygon>(*this);
-}

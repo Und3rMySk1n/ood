@@ -6,7 +6,10 @@ class CShape;
 class IShape
 {
 public:
-	virtual std::unique_ptr<CShape> Clone()const = 0;
+	virtual void SetColor(Color color) = 0;
+	virtual Color GetColor() const = 0;
+
+	virtual void Draw(ICanvas &canvas) const = 0;
 
 	virtual ~IShape() = default;
 };

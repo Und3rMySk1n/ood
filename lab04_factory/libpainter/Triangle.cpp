@@ -41,8 +41,3 @@ Vertex CTriangle::GetVertex3() const
 {
 	return m_vertex3;
 }
-
-unique_ptr<CShape> CTriangle::Clone() const
-{
-	return make_unique<CTriangle>(*this);
-}

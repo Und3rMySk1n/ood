@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 class CEllipse :
-	public CShape
+	public CShapeImpl<CShape, CShape, CEllipse>
 {
 public:
 	CEllipse(Color color, Vertex center, float horizontalRadius, float verticalRadius);
@@ -11,8 +11,6 @@ public:
 	float GetVerticalRadius() const;
 
 	void Draw(ICanvas &canvas) const override;
-
-	std::unique_ptr<CShape> Clone() const final;
 
 	~CEllipse();
 private:

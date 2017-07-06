@@ -3,7 +3,7 @@
 #include <vector>
 
 class CRegularPolygon :
-	public CShape
+	public CShapeImpl<CShape, CShape, CRegularPolygon>
 {
 public:
 	CRegularPolygon(Color color, Vertex center, float radius, int vertexCount);
@@ -13,8 +13,6 @@ public:
 	int GetVertexCount() const;
 
 	void Draw(ICanvas &canvas) const override;
-
-	std::unique_ptr<CShape> Clone() const final;
 
 	~CRegularPolygon();
 private:

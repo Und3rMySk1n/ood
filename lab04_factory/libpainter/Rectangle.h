@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 class CRectangle :
-	public CShape
+	public CShapeImpl<CShape, CShape, CRectangle>
 {
 public:
 	CRectangle(Color color, Vertex leftTop, Vertex rightBottom);
@@ -10,8 +10,6 @@ public:
 	Vertex GetRightBottom() const;
 
 	void Draw(ICanvas &canvas) const override;
-
-	std::unique_ptr<CShape> Clone() const final;
 
 	~CRectangle();
 private:

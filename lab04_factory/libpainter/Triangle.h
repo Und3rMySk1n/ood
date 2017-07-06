@@ -2,7 +2,7 @@
 #include "Shape.h"
 
 class CTriangle :
-	public CShape
+	public CShapeImpl<CShape, CShape, CTriangle>
 {
 public:
 	CTriangle(Color color, Vertex vertex1, Vertex vertex2, Vertex vertex3);
@@ -12,8 +12,6 @@ public:
 	Vertex GetVertex3() const;
 
 	void Draw(ICanvas &canvas) const override;
-
-	std::unique_ptr<CShape> Clone() const final;
 
 	~CTriangle();
 private:
