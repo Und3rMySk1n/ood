@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Signals.h"
+#include "FunctionType.h"
 
 struct NoRealRoots {};
 struct InfiniteNumberOfRoots {};
 
 typedef boost::variant<NoRealRoots, InfiniteNumberOfRoots, double, std::pair<double, double>> EquationRoots;
-
 
 class CEquationSolver
 {
@@ -18,6 +18,7 @@ public:
 	sig::connection DoOnSolutionChange(const SolutionChangeSignal::slot_type & handler);
 
 	EquationRoots GetEquationRoots()const;
+	std::vector<std::pair<float, float>> GetChartPoints()const;
 
 	double GetQuadraticCoeff()const;
 	void SetQuadraticCoeff(double a);
@@ -27,10 +28,19 @@ public:
 
 	double GetConstantCoeff()const;
 	void SetConstantCoeff(double c);
+
+	int GetFrequency() const;
+	int GetHorizontalLimit() const;
+
+	void SetFunctionType(FunctionType newType);
+	FunctionType GetFunctionType();
 private:
 	double m_a = 0;
 	double m_b = 0;
 	double m_c = 0;
+	int m_frequency = 10;
+	int m_horizontalLimit = 5;
+	FunctionType m_function = FunctionType::SIN;
 
 	SolutionChangeSignal m_solutionChanged;
 };

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "EquationSolver.h"
+#include "FunctionType.h"
 
+using namespace std;
 
 CEquationSolver::CEquationSolver()
 {
@@ -52,6 +54,25 @@ EquationRoots CEquationSolver::GetEquationRoots() const
 
 }
 
+vector<std::pair<float, float>> CEquationSolver::GetChartPoints()const
+{
+	vector<std::pair<float, float>> result;
+
+	float step = 0.5;
+	int x = 0;
+	for (int i = 0; i <= m_frequency; i++)
+	{
+		std::pair<float, float> point;
+		point.first = x;
+		point.second = m_a * sinf(m_b * x + m_c);
+
+		result.push_back(point);
+		x = x + step;
+	}
+
+	return result;
+}
+
 double CEquationSolver::GetQuadraticCoeff() const
 {
 	return m_a;
@@ -92,4 +113,25 @@ void CEquationSolver::SetConstantCoeff(double c)
 		m_c = c;
 		m_solutionChanged();
 	}
+}
+
+int CEquationSolver::GetFrequency()const
+{
+	return m_frequency;
+}
+
+int CEquationSolver::GetHorizontalLimit()const
+{
+	return m_horizontalLimit;
+}
+
+void CEquationSolver::SetFunctionType(FunctionType newType)
+{
+	m_function = newType;
+	m_solutionChanged();
+}
+
+FunctionType CEquationSolver::GetFunctionType()
+{
+	return m_function;
 }

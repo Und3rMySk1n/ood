@@ -15,6 +15,7 @@ private:
 	void SetCoeffA(double a) override;
 	void SetCoeffB(double b) override;
 	void SetCoeffC(double c) override;
+	void SetFunctionType(FunctionType newType) override;
 private:
 	CMainDlg m_dlg;
 	CEquationSolver & m_solver;

@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EquationSolver.h" />
+    <ClInclude Include="FunctionType.h" />
     <ClInclude Include="IMainDlgController.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="MainDlgController.h" />

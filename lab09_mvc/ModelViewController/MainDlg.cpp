@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "EquationSolver.h"
 #include "IMainDlgController.h"
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -110,67 +111,40 @@ void CMainDlg::DrawChart()
 	int h = rc.Height();
 
 	int x_start = 10;
-	int y_start = h - 10;
+	int y_start = h / 2;
 
-	//–исуем Е
+	int horizontalCoef = (w - 20) / m_solver.GetHorizontalLimit();
+
+	//Drawing chart rulers
 	CPen pnPenBlack(PS_SOLID, 1, RGB(0, 0, 0));
 	CPen * pOldPen = dc.SelectObject(&pnPenBlack);
 	dc.FillSolidRect(rc, RGB(255, 255, 255));
-	dc.MoveTo(x_start - 5, y_start);
-	dc.LineTo(x_start + w - 15, y_start);
-	dc.MoveTo(x_start, y_start + 5);
-	dc.LineTo(x_start, y_start - h + 15);
+	dc.MoveTo(x_start, y_start);
+	dc.LineTo(x_start + w - 20, y_start);
+	dc.MoveTo(x_start, 5);
+	dc.LineTo(x_start, h - 5);
+
+	//Drawing chart
 	CPen pnPenRed(PS_SOLID, 1, RGB(255, 0, 0));
 	dc.SelectObject(&pnPenRed);
 	dc.MoveTo(x_start, y_start);
-	for (int i = 3; i < w - x_start - 2; i += 3)
-	{
-		dc.LineTo(x_start + i, y_start - int(h / 3 * (1 - sin((float)i))));
-	}
-	dc.SelectObject(pOldPen);
 
-	SetRadioChangeText((boost::wformat(L"Width: %1% Height: %2%") % w % h).str());
+	std::vector<std::pair<float, float>> chartPoints = m_solver.GetChartPoints();
+	for (auto point : chartPoints)
+	{
+		dc.LineTo((float)x_start + (point.first * horizontalCoef), ((float)y_start + point.second) * 1.5);
+	}
+
+	dc.SelectObject(pOldPen);
 }
 
 void CMainDlg::UpdateEquation()
 {
-	auto solution = m_solver.GetEquationRoots();
-	struct SolutionPrinter : boost::static_visitor<void>
-	{
-		CMainDlg & self;
-		SolutionPrinter(CMainDlg &self)
-			:self(self)
-		{
-		}
-		void operator()(NoRealRoots)
-		{
-			self.SetSolutionText(L"No real roots");
-		}
-		void operator()(InfiniteNumberOfRoots)
-		{
-			self.SetSolutionText(L"Infinite number of roots");
-		}
-		void operator()(double root)
-		{
-			self.SetSolutionText((boost::wformat(L"One root: %1%") % root).str());
-		}
-		void operator()(const std::pair<double, double> & roots)
-		{
-			self.SetSolutionText((boost::wformat(L"Two roots: %1% and %2%") % roots.first % roots.second).str());
-		}
+	auto FunctionToString = [](FunctionType function) {
+		return ((function == FunctionType::SIN) ? L"sin" : L"cos");
 	};
 
-	SolutionPrinter printer(*this);
-	solution.apply_visitor(printer);
-
-	auto ToSignedString = [](double value) {
-		std::wostringstream strm;
-		strm << std::abs(value);
-
-		return ((value < 0) ? L"- " : L"+ ") + strm.str();
-	};
-
-	SetEquationText((boost::wformat(L"%1%x\u00b2 %2%x %3% = 0") % m_solver.GetQuadraticCoeff() % ToSignedString(m_solver.GetLinearCoeff()) % ToSignedString(m_solver.GetConstantCoeff())).str());
+	SetEquationText((boost::wformat(L"%1%*%2%(%3%x + %4%)") % m_solver.GetQuadraticCoeff() % FunctionToString(m_solver.GetFunctionType()) % m_solver.GetLinearCoeff() % m_solver.GetConstantCoeff()).str());
 	DrawChart();
 }
 
@@ -220,13 +194,21 @@ void CMainDlg::OnKillfocusCoeffC()
 
 void CMainDlg::OnRadio1Clicked()
 {
-	SetRadioChangeText(L"Option radio one!");
-	UpdateEquation();
+	if (UpdateData())
+	{
+		m_controller.SetFunctionType(FunctionType::SIN);
+		SetRadioChangeText(L"Function is SIN");
+		UpdateEquation();
+	}
 }
 
 
 void CMainDlg::OnRadio2Clicked()
 {
-	SetRadioChangeText(L"Option radio two!");
-	UpdateEquation();
+	if (UpdateData())
+	{
+		m_controller.SetFunctionType(FunctionType::COS);
+		SetRadioChangeText(L"Function is COS");
+		UpdateEquation();
+	}
 }

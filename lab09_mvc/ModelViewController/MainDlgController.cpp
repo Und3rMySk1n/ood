@@ -33,3 +33,8 @@ void CMainDlgController::SetCoeffC(double c)
 {
 	m_solver.SetConstantCoeff(c);
 }
+
+void CMainDlgController::SetFunctionType(FunctionType newType)
+{
+	m_solver.SetFunctionType(newType);
+}
