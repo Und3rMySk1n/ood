@@ -1,0 +1,3 @@
+polygon green 100 100 70 5
+triangle red 100 100 200 300 100 400
+ellipse pink 500 500 100 200
