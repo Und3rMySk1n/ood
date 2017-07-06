@@ -102,5 +102,24 @@ Machine is sold out
 			outputStream << machine.ToString();
 			BOOST_CHECK_EQUAL(expectedOutput, outputStream.str());
 		}
+
+		BOOST_AUTO_TEST_CASE(set_machine_in_has_quartes_state_if_quarters_left_after_dispose)
+		{
+			string expectedOutput = R"(
+Mighty Gumball, Inc.
+C++-enabled Standing Multi Gumball Model #2016 (with state)
+Inventory: 2 gumballs
+Quarters: 3
+Machine is waiting for turn of crank
+)";
+			machine.InsertQuarter();
+			machine.InsertQuarter();
+			machine.InsertQuarter();
+			machine.InsertQuarter();
+			machine.TurnCrank();
+			
+			outputStream << machine.ToString();
+			BOOST_CHECK_EQUAL(expectedOutput, outputStream.str());
+		}
 	BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()

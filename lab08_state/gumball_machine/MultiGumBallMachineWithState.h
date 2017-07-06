@@ -60,7 +60,7 @@ namespace multi_with_state
 			}
 			else
 			{
-				if (m_gumballMachine.GetQuartersCount == 0)
+				if (m_gumballMachine.GetQuartersCount() == 0)
 				{
 					m_gumballMachine.SetNoQuarterState();
 				}

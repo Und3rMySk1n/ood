@@ -146,11 +146,11 @@ Machine is %4%
 				{
 					if (m_quarters == 0)
 					{
-						m_state = State::HasQuarters;
+						m_state = State::NoQuarter;
 					}
 					else
 					{
-						m_state = State::NoQuarter;
+						m_state = State::HasQuarters;
 					}
 				}
 				break;
