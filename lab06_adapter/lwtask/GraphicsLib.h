@@ -8,6 +8,7 @@ namespace graphics_lib
 	class ICanvas
 	{
 	public:
+		virtual void SetColor(uint32_t rgbColor) = 0;
 		// —тавит "перо" в точку x, y
 		virtual void MoveTo(int x, int y) = 0;
 		// –исует линию с текущей позиции, передвига€ перо в точку x,y 
@@ -20,6 +21,7 @@ namespace graphics_lib
 	{
 	public:
 		CCanvas(std::ostream& outputStream);
+		void SetColor(uint32_t rgbColor) override;
 		void MoveTo(int x, int y) override;
 		void LineTo(int x, int y) override;
 	private:

@@ -4,6 +4,21 @@
 // ѕространство имен современной графической библиотеки (недоступно дл€ изменени€)
 namespace modern_graphics_lib
 {
+	class CRGBAColor
+	{
+	public:
+		CRGBAColor(float r, float g, float b, float a) 
+			: r(r)
+			, g(g)
+			, b(b)
+			, a(a) 
+		{
+		}
+
+		float r, g, b, a;
+	};
+
+
 	class CPoint
 	{
 	public:
@@ -24,7 +39,7 @@ namespace modern_graphics_lib
 		void BeginDraw();
 
 		// ¬ыполн€ет рисование линии
-		void DrawLine(const CPoint & start, const CPoint & end);
+		void DrawLine(const CPoint & start, const CPoint & end, const CRGBAColor& color);
 
 		// Ётот метод должен быть вызван в конце рисовани€
 		void EndDraw();
