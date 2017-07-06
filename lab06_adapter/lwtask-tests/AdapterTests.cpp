@@ -17,7 +17,8 @@ BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
 		{
 			triangle.Draw(canvas);
 			auto expectedCanvasContent =
-				R"(MoveTo (0, 0)
+				R"(SetColor #000000
+MoveTo (0, 0)
 LineTo (1, 1)
 LineTo (2, 2)
 LineTo (0, 0)
@@ -43,7 +44,8 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 	{
 		rectangle.Draw(canvas);
 		auto expectedCanvasContent =
-			R"(MoveTo (0, 0)
+			R"(SetColor #000000
+MoveTo (0, 0)
 LineTo (5, 0)
 LineTo (5, 10)
 LineTo (0, 10)
@@ -71,7 +73,8 @@ BOOST_FIXTURE_TEST_SUITE(Painter, Painter_)
 		{
 			painter.Draw(rectangle);
 			auto expectedCanvasContent =
-			R"(MoveTo (0, 0)
+			R"(SetColor #000000
+MoveTo (0, 0)
 LineTo (5, 0)
 LineTo (5, 10)
 LineTo (0, 10)
@@ -84,7 +87,8 @@ LineTo (0, 0)
 		{
 			painter.Draw(triangle);
 			auto expectedCanvasContent =
-				R"(MoveTo (0, 0)
+				R"(SetColor #000000
+MoveTo (0, 0)
 LineTo (1, 1)
 LineTo (2, 2)
 LineTo (0, 0)
@@ -116,10 +120,18 @@ BOOST_FIXTURE_TEST_SUITE(CanvasAdapter, CanvasAdapter_)
 
 			auto expectedCanvasContent =
 				R"(<draw>
-  <line fromX="0" fromY="0" toX="5" toY="0"/>
-  <line fromX="5" fromY="0" toX="5" toY="10"/>
-  <line fromX="5" fromY="10" toX="0" toY="10"/>
-  <line fromX="0" fromY="10" toX="0" toY="0"/>
+  <line fromX="0" fromY="0" toX="5" toY="0">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
+  <line fromX="5" fromY="0" toX="5" toY="10">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
+  <line fromX="5" fromY="10" toX="0" toY="10">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
+  <line fromX="0" fromY="10" toX="0" toY="0">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
 </draw>
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);
@@ -133,9 +145,15 @@ BOOST_FIXTURE_TEST_SUITE(CanvasAdapter, CanvasAdapter_)
 
 			auto expectedCanvasContent =
 		R"(<draw>
-  <line fromX="0" fromY="0" toX="1" toY="1"/>
-  <line fromX="1" fromY="1" toX="2" toY="2"/>
-  <line fromX="2" fromY="2" toX="0" toY="0"/>
+  <line fromX="0" fromY="0" toX="1" toY="1">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
+  <line fromX="1" fromY="1" toX="2" toY="2">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
+  <line fromX="2" fromY="2" toX="0" toY="0">
+    <color r="0.0" g="0.0" b="0.0" a="1.0" />
+  </line>
 </draw>
 )";
 			BOOST_CHECK_EQUAL(outputStream.str(), expectedCanvasContent);

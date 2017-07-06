@@ -38,7 +38,7 @@ namespace modern_graphics_lib
 			throw logic_error("DrawLine is allowed between BeginDraw()/EndDraw() only");
 		}
 		m_out << boost::format(R"(  <line fromX="%1%" fromY="%2%" toX="%3%" toY="%4%">)") % start.x % start.y % end.x % end.y << endl;
-		m_out << boost::format(R"(   <color r="%1$.3f" g="%2$.3f" b="%3$.3f" a="%4$.3f">)") % color.r % color.g % color.b % color.a << endl;
+		m_out << boost::format(R"(    <color r="%1$.1f" g="%2$.1f" b="%3$.1f" a="%4$.1f" />)") % color.r % color.g % color.b % color.a << endl;
 		m_out << "  </line>" << endl;
 	}
 
