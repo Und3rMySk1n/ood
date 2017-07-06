@@ -30,6 +30,11 @@ int main()
 	try
 	{
 		draft = designer.CreateDraft(cin);
+		unique_ptr<CShape> newPolygon = shapeFactory.CreateShape("polygon green 100 100 70 5");
+		auto polygonClone = newPolygon->Clone();
+
+		draft.AddShape(move(polygonClone));
+
 		painter.DrawPicture(draft, canvas);
 	}
 	catch (exception &e)

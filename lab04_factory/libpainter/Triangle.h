@@ -13,6 +13,8 @@ public:
 
 	void Draw(ICanvas &canvas) const override;
 
+	std::unique_ptr<CShape> Clone() const final;
+
 	~CTriangle();
 private:
 	Vertex m_vertex1 = { 0, 0 };

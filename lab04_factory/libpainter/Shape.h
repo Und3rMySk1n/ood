@@ -2,8 +2,9 @@
 #include "Color.h"
 #include "Vertex.h"
 #include "ICanvas.h"
+#include "IShape.h"
 
-class CShape
+class CShape : public IShape
 {
 public:
 	CShape();

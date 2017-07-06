@@ -12,6 +12,8 @@ public:
 
 	void Draw(ICanvas &canvas) const override;
 
+	std::unique_ptr<CShape> Clone() const final;
+
 	~CEllipse();
 private:
 	Vertex m_center = { 0, 0 };

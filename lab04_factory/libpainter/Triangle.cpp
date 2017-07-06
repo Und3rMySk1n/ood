@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Triangle.h"
 
+using namespace std;
+
 
 CTriangle::CTriangle(Color color, Vertex vertex1, Vertex vertex2, Vertex vertex3)
 	: m_vertex1(vertex1)
@@ -38,4 +40,9 @@ Vertex CTriangle::GetVertex2() const
 Vertex CTriangle::GetVertex3() const
 {
 	return m_vertex3;
+}
+
+unique_ptr<CShape> CTriangle::Clone() const
+{
+	return make_unique<CTriangle>(*this);
 }

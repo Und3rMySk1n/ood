@@ -14,6 +14,8 @@ public:
 
 	void Draw(ICanvas &canvas) const override;
 
+	std::unique_ptr<CShape> Clone() const final;
+
 	~CRegularPolygon();
 private:
 	std::vector<Vertex> GetVerticies() const;

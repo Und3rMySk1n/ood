@@ -90,6 +90,9 @@
     <ClInclude Include="SVGCanvas.h">
       <Filter>Source Files\Canvas</Filter>
     </ClInclude>
+    <ClInclude Include="IShape.h">
+      <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

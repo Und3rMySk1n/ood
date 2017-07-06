@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Ellipse.h"
 
+using namespace std;
+
 void CEllipse::Draw(ICanvas &canvas) const
 {
 	canvas.SetColor(GetColor());
@@ -33,4 +35,9 @@ CEllipse::CEllipse(Color color, Vertex center, float horizontalRadius, float ver
 
 CEllipse::~CEllipse()
 {
+}
+
+unique_ptr<CShape> CEllipse::Clone() const
+{
+	return make_unique<CEllipse>(*this);
 }

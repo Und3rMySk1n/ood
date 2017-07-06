@@ -11,6 +11,8 @@ public:
 
 	void Draw(ICanvas &canvas) const override;
 
+	std::unique_ptr<CShape> Clone() const final;
+
 	~CRectangle();
 private:
 	Vertex m_leftTop = { (float)0.1, (float)0.2 };

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Rectangle.h"
 
+using namespace std;
+
 Vertex CRectangle::GetLeftTop() const
 {
 	return m_leftTop;
@@ -37,4 +39,9 @@ CRectangle::CRectangle(Color color, Vertex leftTop, Vertex rightBottom)
 
 CRectangle::~CRectangle()
 {
+}
+
+unique_ptr<CShape> CRectangle::Clone() const
+{
+	return make_unique<CRectangle>(*this);
 }
