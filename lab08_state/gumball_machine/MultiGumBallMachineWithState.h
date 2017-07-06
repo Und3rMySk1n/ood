@@ -60,7 +60,14 @@ namespace multi_with_state
 			}
 			else
 			{
-				m_gumballMachine.SetNoQuarterState();
+				if (m_gumballMachine.GetQuartersCount == 0)
+				{
+					m_gumballMachine.SetNoQuarterState();
+				}
+				else
+				{
+					m_gumballMachine.SetHasQuarterState();
+				}
 			}
 		}
 		std::string ToString() const override
