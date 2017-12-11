@@ -43,7 +43,6 @@ shared_ptr<const IGroupShape> CGroupShape::GetGroup() const
 void CGroupShape::InsertShape(const std::shared_ptr<IShape> & shape)
 {
 	m_shapes.push_back(shape);
-	CalculateFrame();
 }
 
 shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)
@@ -59,7 +58,6 @@ void CGroupShape::RemoveShapeAtIndex(size_t index)
 	}
 
 	m_shapes.erase(m_shapes.begin() + index);
-	CalculateFrame();
 }
 
 size_t CGroupShape::GetShapesCount()const
@@ -69,34 +67,11 @@ size_t CGroupShape::GetShapesCount()const
 
 RectD CGroupShape::GetFrame()const
 {
-	return m_frame;
-}
+	RectD frame = { 0, 0, 0, 0 };
 
-void CGroupShape::SetFrame(const RectD & rect)
-{
-	RectD oldFrame = GetFrame();
-	for (auto &shape : m_shapes)
+	if (GetShapesCount() != 0)
 	{
-		RectD shapeFrame = shape->GetFrame();
-		shapeFrame.left = rect.left + (shapeFrame.left - oldFrame.left) / (oldFrame.width / rect.width);
-		shapeFrame.top = rect.top + (shapeFrame.top - oldFrame.top) / (oldFrame.height / rect.height);
-		shapeFrame.width = shapeFrame.width * (rect.width / oldFrame.width);
-		shapeFrame.height = shapeFrame.height * (rect.height / oldFrame.height);
-		shape->SetFrame(shapeFrame);
-	}
-
-	CalculateFrame();
-}
-
-void CGroupShape::CalculateFrame()
-{
-	if (GetShapesCount() == 0)
-	{
-		m_frame = { 0, 0, 0, 0 };
-	}
-	else
-	{
-		RectD const &firstFrame = GetShapeAtIndex(0)->GetFrame();
+		RectD const &firstFrame = m_shapes.at(0)->GetFrame();
 
 		double minX = firstFrame.left;
 		double minY = firstFrame.top;
@@ -112,7 +87,23 @@ void CGroupShape::CalculateFrame()
 			maxY = max(maxY, frame.top + frame.height);
 		}
 
-		m_frame = { minX, minY, maxX - minX, maxY - minY };
+		frame = { minX, minY, maxX - minX, maxY - minY };
+	}
+
+	return frame;
+}
+
+void CGroupShape::SetFrame(const RectD & rect)
+{
+	RectD oldFrame = GetFrame();
+	for (auto &shape : m_shapes)
+	{
+		RectD shapeFrame = shape->GetFrame();
+		shapeFrame.left = rect.left + (shapeFrame.left - oldFrame.left) / (oldFrame.width / rect.width);
+		shapeFrame.top = rect.top + (shapeFrame.top - oldFrame.top) / (oldFrame.height / rect.height);
+		shapeFrame.width = shapeFrame.width * (rect.width / oldFrame.width);
+		shapeFrame.height = shapeFrame.height * (rect.height / oldFrame.height);
+		shape->SetFrame(shapeFrame);
 	}
 }
 

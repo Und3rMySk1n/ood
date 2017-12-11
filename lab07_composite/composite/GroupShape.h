@@ -28,10 +28,7 @@ public:
 	virtual RectD GetFrame()const override;
 	virtual void SetFrame(const RectD & rect) override;
 private:
-	RectD m_frame = { 0, 0, 0, 0 };
 	std::vector<std::shared_ptr<IShape>> m_shapes;
-
-	void CalculateFrame();
 	std::shared_ptr<IStyle> CalculateOutlineStyle()const;
 	std::shared_ptr<IStyle> CalculateFillStyle()const;
 };
