@@ -14,7 +14,7 @@ std::shared_ptr<IStyle> CSimpleShape::GetOutlineStyle()
 	return m_outlineStyle;
 }
 
-const std::shared_ptr<IStyle> CSimpleShape::GetOutlineStyle()const
+std::shared_ptr<const IStyle> CSimpleShape::GetOutlineStyle()const
 {
 	return m_outlineStyle;
 }
@@ -24,7 +24,7 @@ std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()
 	return m_fillStyle;
 }
 
-const std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()const
+std::shared_ptr<const IStyle> CSimpleShape::GetFillStyle()const
 {
 	return m_fillStyle;
 }

@@ -6,7 +6,7 @@ class CStyle : public IStyle
 public:
 	CStyle(bool isEnabled, RGBAColor color);
 
-	virtual optional<bool> IsEnabled()const override;
+	virtual bool IsEnabled()const override;
 	virtual void Enable(bool enable) override;
 
 	virtual RGBAColor GetColor()const override;

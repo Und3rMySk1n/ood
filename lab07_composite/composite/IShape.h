@@ -12,10 +12,10 @@ public:
 	virtual void SetFrame(const RectD & rect) = 0;
 
 	virtual std::shared_ptr<IStyle> GetOutlineStyle() = 0;
-	virtual const std::shared_ptr<IStyle> GetOutlineStyle()const = 0;
+	virtual std::shared_ptr<const IStyle> GetOutlineStyle()const = 0;
 
 	virtual std::shared_ptr<IStyle> GetFillStyle() = 0;
-	virtual const std::shared_ptr<IStyle> GetFillStyle()const = 0;
+	virtual std::shared_ptr<const IStyle> GetFillStyle()const = 0;
 
 	virtual std::shared_ptr<IGroupShape> GetGroup() = 0;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const = 0;

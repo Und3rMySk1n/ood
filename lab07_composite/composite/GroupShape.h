@@ -9,10 +9,10 @@ public:
 	virtual void Draw(ICanvas & canvas) override;
 
 	virtual std::shared_ptr<IStyle> GetOutlineStyle() override;
-	virtual const std::shared_ptr<IStyle> GetOutlineStyle()const override;
+	virtual std::shared_ptr<const IStyle> GetOutlineStyle() const override;
 
 	virtual std::shared_ptr<IStyle> GetFillStyle() override;
-	virtual const std::shared_ptr<IStyle> GetFillStyle()const override;
+	virtual std::shared_ptr<const IStyle> GetFillStyle() const override;
 
 	void SetOutlineStyle(const std::shared_ptr<IStyle> &style);
 	void SetFillStyle(const std::shared_ptr<IStyle> &style);

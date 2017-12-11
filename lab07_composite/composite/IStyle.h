@@ -7,7 +7,7 @@ using boost::optional;
 class IStyle
 {
 public:
-	virtual optional<bool> IsEnabled()const = 0;
+	virtual bool IsEnabled()const = 0;
 	virtual void Enable(bool enable) = 0;
 
 	virtual RGBAColor GetColor()const = 0;

@@ -8,7 +8,7 @@ CStyle::CStyle(bool isEnabled, RGBAColor color)
 {
 }
 
-optional<bool> CStyle::IsEnabled()const 
+bool CStyle::IsEnabled()const 
 {
 	return m_isEnabled;
 }

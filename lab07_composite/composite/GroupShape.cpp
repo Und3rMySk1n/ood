@@ -15,7 +15,7 @@ shared_ptr<IStyle> CGroupShape::GetOutlineStyle()
 	return CalculateOutlineStyle();
 }
 
-const shared_ptr<IStyle> CGroupShape::GetOutlineStyle()const
+shared_ptr<const IStyle> CGroupShape::GetOutlineStyle()const
 {
 	return CalculateOutlineStyle();
 }
@@ -25,7 +25,7 @@ shared_ptr<IStyle> CGroupShape::GetFillStyle()
 	return CalculateFillStyle();
 }
 
-const shared_ptr<IStyle> CGroupShape::GetFillStyle()const
+shared_ptr<const IStyle> CGroupShape::GetFillStyle()const
 {
 	return CalculateFillStyle();
 }
