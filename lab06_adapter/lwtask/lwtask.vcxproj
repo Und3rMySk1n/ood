@@ -160,7 +160,6 @@
     <ClInclude Include="GraphicsLib.h" />
     <ClInclude Include="GraphicsLibPro.h" />
     <ClInclude Include="ModernGraphicsLib.h" />
-    <ClInclude Include="ModernGraphicsLibPro.h" />
     <ClInclude Include="ShapeDrawingAdapter.h" />
     <ClInclude Include="ShapeDrawingClassAdapter.h" />
     <ClInclude Include="ShapeDrawingLib.h" />

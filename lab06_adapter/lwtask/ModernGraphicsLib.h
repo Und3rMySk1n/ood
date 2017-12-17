@@ -11,7 +11,7 @@ namespace modern_graphics_lib
 			: r(r)
 			, g(g)
 			, b(b)
-			, a(a) 
+			, a(a)
 		{
 		}
 
