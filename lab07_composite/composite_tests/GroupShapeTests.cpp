@@ -71,13 +71,12 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 		BOOST_AUTO_TEST_CASE(will_return_common_style_if_got_shapes_with_same_style)
 		{
 			shared_ptr<IStyle> firstStyle = make_shared<CStyle>(true, 127);
-			shared_ptr<IStyle> secondStyle = make_shared<CStyle>(true, 127);
 
 			shared_ptr<CRectangle> rectangle = make_shared<CRectangle>(Vertex{ 300, 70 }, Vertex{ 400, 100 });
 			rectangle->SetFillStyle(firstStyle);
 
 			shared_ptr<CEllipse> ellipse = make_shared<CEllipse>(Vertex{ 300, 70 }, 30, 30);
-			ellipse->SetFillStyle(secondStyle);
+			ellipse->SetFillStyle(firstStyle);
 
 			groupShape->InsertShape(rectangle);
 			groupShape->InsertShape(ellipse);
@@ -86,6 +85,25 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 
 			BOOST_CHECK_EQUAL(commonStyle->IsEnabled(), true);
 			BOOST_CHECK_EQUAL(commonStyle->GetColor(), 127);
+		}
+
+		BOOST_AUTO_TEST_CASE(will_return_nullptr_if_got_shapes_with_similar_but_different_styles)
+		{
+			shared_ptr<IStyle> firstStyle = make_shared<CStyle>(true, 127);
+			shared_ptr<IStyle> secondStyle = make_shared<CStyle>(true, 127);
+
+			shared_ptr<CRectangle> rectangle = make_shared<CRectangle>(Vertex{ 300, 70 }, Vertex{ 400, 100 });
+			rectangle->SetOutlineStyle(firstStyle);
+
+			shared_ptr<CEllipse> ellipse = make_shared<CEllipse>(Vertex{ 300, 70 }, 30, 30);
+			ellipse->SetOutlineStyle(secondStyle);
+
+			groupShape->InsertShape(rectangle);
+			groupShape->InsertShape(ellipse);
+
+			shared_ptr<IStyle> commonStyle = groupShape->GetOutlineStyle();
+
+			BOOST_CHECK(!commonStyle);
 		}
 
 		BOOST_AUTO_TEST_CASE(will_return_empty_common_style_if_got_shapes_with_different_style)

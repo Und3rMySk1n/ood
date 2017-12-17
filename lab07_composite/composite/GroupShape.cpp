@@ -115,23 +115,17 @@ shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
 		return nullptr;
 	}
 
-	bool sameStyle = true;
-	std::shared_ptr<CStyle> commonStyle = std::make_shared<CStyle>(true, 0);
-
-	commonStyle->Enable(m_shapes.at(0)->GetOutlineStyle()->IsEnabled());
-	commonStyle->SetColor(m_shapes.at(0)->GetOutlineStyle()->GetColor());
-
+	std::shared_ptr<IStyle> commonStyle = m_shapes.at(0)->GetOutlineStyle();
 	for (auto & shape : m_shapes)
 	{
-		auto shapeStyle = shape->GetOutlineStyle();
-		if (shapeStyle->GetColor() != commonStyle->GetColor() || shapeStyle->IsEnabled() != commonStyle->IsEnabled())
+		if (commonStyle != shape->GetOutlineStyle())
 		{
-			sameStyle = false;
+			commonStyle = nullptr;
 			break;
 		}
 	}
 
-	return (sameStyle) ? commonStyle : nullptr;
+	return commonStyle;
 }
 
 shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
@@ -141,23 +135,17 @@ shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
 		return nullptr;
 	}
 
-	bool sameStyle = true;
-	std::shared_ptr<CStyle> commonStyle = std::make_shared<CStyle>(true, 0);
-
-	commonStyle->Enable(m_shapes.at(0)->GetOutlineStyle()->IsEnabled());
-	commonStyle->SetColor(m_shapes.at(0)->GetFillStyle()->GetColor());
-
+	std::shared_ptr<IStyle> commonStyle = m_shapes.at(0)->GetFillStyle();
 	for (auto & shape : m_shapes)
 	{
-		auto shapeStyle = shape->GetFillStyle();
-		if (shapeStyle->GetColor() != commonStyle->GetColor() || shapeStyle->IsEnabled() != commonStyle->IsEnabled())
+		if (commonStyle != shape->GetFillStyle())
 		{
-			sameStyle = false;
+			commonStyle = nullptr;
 			break;
 		}
 	}
 
-	return (sameStyle) ? commonStyle : nullptr;
+	return commonStyle;
 }
 
 void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
