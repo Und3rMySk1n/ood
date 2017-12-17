@@ -50,9 +50,6 @@
     <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsLibPro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShapeDrawingAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
