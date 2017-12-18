@@ -8,6 +8,7 @@
 #include "Ellipse.h"
 #include "Style.h"
 #include "GroupShape.h"
+#include "Slide.h"
 
 using namespace std;
 
@@ -62,7 +63,6 @@ int main()
 		ship->InsertShape(boatPartOne);
 		ship->InsertShape(boatPartTwo);
 		ship->InsertShape(boatPartThree);
-
 		ship->Draw(canvas);
 
 		RectD frame = ship->GetFrame();
@@ -76,7 +76,10 @@ int main()
 		ship->SetFrame(newFrame);
 		ship->SetFillStyle(blueFillStyle);
 		ship->SetOutlineStyle(blueFillStyle);
-		ship->Draw(canvas);
+
+		CSlide slide;
+		slide.InsertShape(ship);
+		slide.Draw(canvas);
 	}
 	catch (exception & e)
 	{
