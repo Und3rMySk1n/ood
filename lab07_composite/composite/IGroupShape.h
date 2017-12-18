@@ -1,8 +1,7 @@
 #pragma once
 #include "IShape.h"
-#include "IShapes.h"
 
-class IGroupShape : public IShape, public IShapes
+class IGroupShape : public IShape
 {
 public:
 	virtual ~IGroupShape() = default;

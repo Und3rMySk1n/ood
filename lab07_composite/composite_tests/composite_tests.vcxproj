@@ -167,6 +167,7 @@
     <ClInclude Include="..\composite\IShapes.h" />
     <ClInclude Include="..\composite\IStyle.h" />
     <ClInclude Include="..\composite\Rectangle.h" />
+    <ClInclude Include="..\composite\Shapes.h" />
     <ClInclude Include="..\composite\SimpleShape.h" />
     <ClInclude Include="..\composite\Style.h" />
     <ClInclude Include="stdafx.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="..\composite\Ellipse.cpp" />
     <ClCompile Include="..\composite\GroupShape.cpp" />
     <ClCompile Include="..\composite\Rectangle.cpp" />
+    <ClCompile Include="..\composite\Shapes.cpp" />
     <ClCompile Include="..\composite\SimpleShape.cpp" />
     <ClCompile Include="..\composite\Style.cpp" />
     <ClCompile Include="composite_tests.cpp" />

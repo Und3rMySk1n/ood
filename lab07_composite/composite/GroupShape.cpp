@@ -41,36 +41,11 @@ shared_ptr<const IGroupShape> CGroupShape::GetGroup() const
 	return make_shared<CGroupShape>(*this);
 }
 
-void CGroupShape::InsertShape(const std::shared_ptr<IShape> & shape)
-{
-	m_shapes.push_back(shape);
-}
-
-shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)
-{
-	return m_shapes.at(index);
-}
-
-void CGroupShape::RemoveShapeAtIndex(size_t index)
-{
-	if (index >= m_shapes.size())
-	{
-		throw out_of_range("There is no shape with this index.");
-	}
-
-	m_shapes.erase(m_shapes.begin() + index);
-}
-
-size_t CGroupShape::GetShapesCount()const
-{
-	return m_shapes.size();
-}
-
 RectD CGroupShape::GetFrame()const
 {
 	RectD frame = { 0, 0, 0, 0 };
 
-	if (GetShapesCount() != 0)
+	if (!m_shapes.empty())
 	{
 		RectD const &firstFrame = m_shapes.at(0)->GetFrame();
 

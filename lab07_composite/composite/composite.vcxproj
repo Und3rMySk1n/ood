@@ -150,6 +150,7 @@
     <ClCompile Include="GroupShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SimpleShape.cpp" />
     <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Style.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="ISlide.h" />
     <ClInclude Include="IStyle.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Shapes.h" />
     <ClInclude Include="SimpleShape.h" />
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Style.h" />
