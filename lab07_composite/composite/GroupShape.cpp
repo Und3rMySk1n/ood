@@ -5,8 +5,9 @@ using namespace std;
 
 void CGroupShape::Draw(ICanvas & canvas)
 {
-	for (auto shape : m_shapes)
+	for (int i = 0; i < m_shapes.GetShapesCount(); i++)
 	{
+		auto shape = m_shapes.GetShapeAtIndex(i);
 		shape->Draw(canvas);
 	}
 }
@@ -44,24 +45,29 @@ shared_ptr<const IGroupShape> CGroupShape::GetGroup() const
 RectD CGroupShape::GetFrame()const
 {
 	RectD frame = { 0, 0, 0, 0 };
-
-	if (!m_shapes.empty())
+	
+	if (m_shapes.GetShapesCount() != 0)
 	{
-		RectD const &firstFrame = m_shapes.at(0)->GetFrame();
+		RectD const &firstFrame = m_shapes.GetShapeAtIndex(0)->GetFrame();
 
 		double minX = firstFrame.left;
 		double minY = firstFrame.top;
 		double maxX = minX + firstFrame.width;
 		double maxY = minY + firstFrame.height;
 
-		for (auto const &shape : m_shapes)
+		if (m_shapes.GetShapesCount() > 0)
 		{
-			RectD const &frame = shape->GetFrame();
-			minX = min(minX, frame.left);
-			minY = min(minY, frame.top);
-			maxX = max(maxX, frame.left + frame.width);
-			maxY = max(maxY, frame.top + frame.height);
-		}
+			for (int i = 1; i < m_shapes.GetShapesCount(); i++)
+			{
+				auto shape = m_shapes.GetShapeAtIndex(i);
+
+				RectD const &frame = shape->GetFrame();
+				minX = min(minX, frame.left);
+				minY = min(minY, frame.top);
+				maxX = max(maxX, frame.left + frame.width);
+				maxY = max(maxY, frame.top + frame.height);
+			}
+		}		
 
 		frame = { minX, minY, maxX - minX, maxY - minY };
 	}
@@ -72,8 +78,11 @@ RectD CGroupShape::GetFrame()const
 void CGroupShape::SetFrame(const RectD & rect)
 {
 	RectD oldFrame = GetFrame();
-	for (auto &shape : m_shapes)
+
+	for (int i = 0; i < m_shapes.GetShapesCount(); i++)
 	{
+		auto shape = m_shapes.GetShapeAtIndex(i);
+
 		RectD shapeFrame = shape->GetFrame();
 		shapeFrame.left = rect.left + (shapeFrame.left - oldFrame.left) / (oldFrame.width / rect.width);
 		shapeFrame.top = rect.top + (shapeFrame.top - oldFrame.top) / (oldFrame.height / rect.height);
@@ -85,18 +94,23 @@ void CGroupShape::SetFrame(const RectD & rect)
 
 shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
 {
-	if (m_shapes.empty())
+	if (m_shapes.GetShapesCount() == 0)
 	{
 		return nullptr;
 	}
 
-	std::shared_ptr<IStyle> commonStyle = m_shapes.at(0)->GetOutlineStyle();
-	for (auto & shape : m_shapes)
+	std::shared_ptr<IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetOutlineStyle();
+	if (m_shapes.GetShapesCount() > 0)
 	{
-		if (commonStyle != shape->GetOutlineStyle())
+		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
 		{
-			commonStyle = nullptr;
-			break;
+			auto shape = m_shapes.GetShapeAtIndex(i);
+
+			if (commonStyle != shape->GetOutlineStyle())
+			{
+				commonStyle = nullptr;
+				break;
+			}
 		}
 	}
 
@@ -105,18 +119,23 @@ shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
 
 shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
 {
-	if (m_shapes.empty())
+	if (m_shapes.GetShapesCount() == 0)
 	{
 		return nullptr;
 	}
 
-	std::shared_ptr<IStyle> commonStyle = m_shapes.at(0)->GetFillStyle();
-	for (auto & shape : m_shapes)
+	std::shared_ptr<IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetFillStyle();
+	if (m_shapes.GetShapesCount() > 0)
 	{
-		if (commonStyle != shape->GetFillStyle())
+		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
 		{
-			commonStyle = nullptr;
-			break;
+			auto shape = m_shapes.GetShapeAtIndex(i);
+
+			if (commonStyle != shape->GetFillStyle())
+			{
+				commonStyle = nullptr;
+				break;
+			}
 		}
 	}
 
@@ -125,10 +144,11 @@ shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
 
 void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
 {
-	if (!m_shapes.empty())
+	if (m_shapes.GetShapesCount() != 0)
 	{
-		for (shared_ptr<IShape> &shape : m_shapes)
+		for (int i = 0; i < m_shapes.GetShapesCount(); i++)
 		{
+			auto shape = m_shapes.GetShapeAtIndex(i);
 			shape->SetOutlineStyle(style);
 		}
 	}
@@ -136,11 +156,37 @@ void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
 
 void CGroupShape::SetFillStyle(const std::shared_ptr<IStyle> &style)
 {
-	if (!m_shapes.empty())
+	if (m_shapes.GetShapesCount() != 0)
 	{
-		for (shared_ptr<IShape> &shape : m_shapes)
+		for (int i = 0; i < m_shapes.GetShapesCount(); i++)
 		{
+			auto shape = m_shapes.GetShapeAtIndex(i);
 			shape->SetFillStyle(style);
 		}
 	}
+}
+
+size_t CGroupShape::GetShapesCount()const
+{
+	return m_shapes.GetShapesCount();
+}
+
+void CGroupShape::InsertShape(const std::shared_ptr<IShape> & shape)
+{
+	m_shapes.InsertShape(shape);
+}
+
+std::shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)
+{
+	return m_shapes.GetShapeAtIndex(index);
+}
+
+const std::shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)const
+{
+	return m_shapes.GetShapeAtIndex(index);
+}
+
+void CGroupShape::RemoveShapeAtIndex(size_t index)
+{
+	m_shapes.RemoveShapeAtIndex(index);
 }

@@ -3,7 +3,7 @@
 #include "IGroupShape.h"
 #include "Shapes.h"
 
-class CGroupShape : public IGroupShape, public CShapes
+class CGroupShape : public IGroupShape
 {
 public:
 	virtual void Draw(ICanvas & canvas) override;
@@ -22,7 +22,16 @@ public:
 
 	virtual RectD GetFrame()const override;
 	virtual void SetFrame(const RectD & rect) override;
+
+	virtual size_t GetShapesCount()const override;
+	virtual void InsertShape(const std::shared_ptr<IShape> & shape) override;
+	virtual void RemoveShapeAtIndex(size_t index) override;
+
+	virtual std::shared_ptr<IShape> GetShapeAtIndex(size_t index) override;
+	virtual const std::shared_ptr<IShape> GetShapeAtIndex(size_t index)const override;
+
 private:
 	std::shared_ptr<IStyle> CalculateOutlineStyle()const;
 	std::shared_ptr<IStyle> CalculateFillStyle()const;
+	CShapes m_shapes;
 };

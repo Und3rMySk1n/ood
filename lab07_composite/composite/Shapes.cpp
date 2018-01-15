@@ -16,6 +16,11 @@ std::shared_ptr<IShape> CShapes::GetShapeAtIndex(size_t index)
 	return m_shapes.at(index);
 }
 
+const std::shared_ptr<IShape> CShapes::GetShapeAtIndex(size_t index)const
+{
+	return m_shapes.at(index);
+}
+
 void CShapes::RemoveShapeAtIndex(size_t index)
 {
 	if (index >= m_shapes.size())
