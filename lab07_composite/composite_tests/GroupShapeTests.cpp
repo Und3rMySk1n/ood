@@ -61,8 +61,8 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 
 		BOOST_AUTO_TEST_CASE(will_not_return_common_style_while_empty)
 		{
-			shared_ptr<IStyle> commonFillStyle = groupShape->GetFillStyle();
-			shared_ptr<IStyle> commonOutlineStyle = groupShape->GetOutlineStyle();
+			shared_ptr<const IStyle> commonFillStyle = groupShape->GetFillStyle();
+			shared_ptr<const IStyle> commonOutlineStyle = groupShape->GetOutlineStyle();
 
 			BOOST_CHECK(!commonFillStyle);
 			BOOST_CHECK(!commonOutlineStyle);
@@ -81,7 +81,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			groupShape->InsertShape(rectangle);
 			groupShape->InsertShape(ellipse);
 
-			shared_ptr<IStyle> commonStyle = groupShape->GetFillStyle();
+			shared_ptr<const IStyle> commonStyle = groupShape->GetFillStyle();
 
 			BOOST_CHECK_EQUAL(commonStyle->IsEnabled(), true);
 			BOOST_CHECK_EQUAL(commonStyle->GetColor(), 127);
@@ -101,7 +101,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			groupShape->InsertShape(rectangle);
 			groupShape->InsertShape(ellipse);
 
-			shared_ptr<IStyle> commonStyle = groupShape->GetOutlineStyle();
+			shared_ptr<const IStyle> commonStyle = groupShape->GetOutlineStyle();
 
 			BOOST_CHECK(!commonStyle);
 		}
@@ -120,7 +120,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			groupShape->InsertShape(rectangle);
 			groupShape->InsertShape(ellipse);
 
-			shared_ptr<IStyle> commonStyle = groupShape->GetOutlineStyle();
+			shared_ptr<const IStyle> commonStyle = groupShape->GetOutlineStyle();
 
 			BOOST_CHECK(!commonStyle);
 		}
