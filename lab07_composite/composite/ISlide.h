@@ -1,7 +1,8 @@
 #pragma once
 #include "IDrawable.h"
+#include "IShapes.h"
 
-class ISlide : public IDrawable
+class ISlide : public IDrawable, public IShapes
 {
 public:
 	virtual double GetWidth()const = 0;
