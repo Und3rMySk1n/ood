@@ -8,10 +8,7 @@ class CGroupShape : public IGroupShape
 public:
 	virtual void Draw(ICanvas & canvas) override;
 
-	virtual std::shared_ptr<IStyle> GetOutlineStyle() override;
 	virtual std::shared_ptr<const IStyle> GetOutlineStyle() const override;
-
-	virtual std::shared_ptr<IStyle> GetFillStyle() override;
 	virtual std::shared_ptr<const IStyle> GetFillStyle() const override;
 
 	void SetOutlineStyle(const std::shared_ptr<IStyle> &style) override;
@@ -29,7 +26,7 @@ public:
 	virtual std::shared_ptr<IShape> GetShapeAtIndex(size_t index)const override;
 
 private:
-	std::shared_ptr<IStyle> CalculateOutlineStyle()const;
-	std::shared_ptr<IStyle> CalculateFillStyle()const;
+	std::shared_ptr<const IStyle> CalculateOutlineStyle()const;
+	std::shared_ptr<const IStyle> CalculateFillStyle()const;
 	CShapes m_shapes;
 };

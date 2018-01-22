@@ -54,8 +54,6 @@ void CSlide::Draw(ICanvas & canvas)
 	}
 }
 
-
-
 size_t CSlide::GetShapesCount()const
 {
 	return m_shapes.GetShapesCount();

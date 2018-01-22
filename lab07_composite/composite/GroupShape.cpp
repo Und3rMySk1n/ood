@@ -12,19 +12,9 @@ void CGroupShape::Draw(ICanvas & canvas)
 	}
 }
 
-shared_ptr<IStyle> CGroupShape::GetOutlineStyle()
-{
-	return CalculateOutlineStyle();
-}
-
 shared_ptr<const IStyle> CGroupShape::GetOutlineStyle()const
 {
 	return CalculateOutlineStyle();
-}
-
-shared_ptr<IStyle> CGroupShape::GetFillStyle()
-{
-	return CalculateFillStyle();
 }
 
 shared_ptr<const IStyle> CGroupShape::GetFillStyle()const
@@ -92,14 +82,14 @@ void CGroupShape::SetFrame(const RectD & rect)
 	}
 }
 
-shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
+shared_ptr<const IStyle> CGroupShape::CalculateOutlineStyle()const
 {
 	if (m_shapes.GetShapesCount() == 0)
 	{
 		return nullptr;
 	}
 
-	std::shared_ptr<IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetOutlineStyle();
+	std::shared_ptr<const IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetOutlineStyle();
 	if (m_shapes.GetShapesCount() > 0)
 	{
 		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
@@ -117,14 +107,14 @@ shared_ptr<IStyle> CGroupShape::CalculateOutlineStyle()const
 	return commonStyle;
 }
 
-shared_ptr<IStyle> CGroupShape::CalculateFillStyle()const
+shared_ptr<const IStyle> CGroupShape::CalculateFillStyle()const
 {
 	if (m_shapes.GetShapesCount() == 0)
 	{
 		return nullptr;
 	}
 
-	std::shared_ptr<IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetFillStyle();
+	std::shared_ptr<const IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetFillStyle();
 	if (m_shapes.GetShapesCount() > 0)
 	{
 		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
