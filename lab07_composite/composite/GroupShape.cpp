@@ -176,12 +176,7 @@ void CGroupShape::InsertShape(const std::shared_ptr<IShape> & shape)
 	m_shapes.InsertShape(shape);
 }
 
-std::shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)
-{
-	return m_shapes.GetShapeAtIndex(index);
-}
-
-const std::shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)const
+std::shared_ptr<IShape> CGroupShape::GetShapeAtIndex(size_t index)const
 {
 	return m_shapes.GetShapeAtIndex(index);
 }

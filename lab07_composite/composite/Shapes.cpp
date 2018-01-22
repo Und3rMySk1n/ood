@@ -11,12 +11,7 @@ void CShapes::InsertShape(const std::shared_ptr<IShape> & shape)
 	m_shapes.push_back(shape);
 }
 
-std::shared_ptr<IShape> CShapes::GetShapeAtIndex(size_t index)
-{
-	return m_shapes.at(index);
-}
-
-const std::shared_ptr<IShape> CShapes::GetShapeAtIndex(size_t index)const
+std::shared_ptr<IShape> CShapes::GetShapeAtIndex(size_t index)const
 {
 	return m_shapes.at(index);
 }

@@ -14,8 +14,8 @@ public:
 	virtual std::shared_ptr<IStyle> GetFillStyle() override;
 	virtual std::shared_ptr<const IStyle> GetFillStyle() const override;
 
-	void SetOutlineStyle(const std::shared_ptr<IStyle> &style);
-	void SetFillStyle(const std::shared_ptr<IStyle> &style);
+	void SetOutlineStyle(const std::shared_ptr<IStyle> &style) override;
+	void SetFillStyle(const std::shared_ptr<IStyle> &style) override;
 
 	virtual std::shared_ptr<IGroupShape> GetGroup() override;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const override;
@@ -26,9 +26,7 @@ public:
 	virtual size_t GetShapesCount()const override;
 	virtual void InsertShape(const std::shared_ptr<IShape> & shape) override;
 	virtual void RemoveShapeAtIndex(size_t index) override;
-
-	virtual std::shared_ptr<IShape> GetShapeAtIndex(size_t index) override;
-	virtual const std::shared_ptr<IShape> GetShapeAtIndex(size_t index)const override;
+	virtual std::shared_ptr<IShape> GetShapeAtIndex(size_t index)const override;
 
 private:
 	std::shared_ptr<IStyle> CalculateOutlineStyle()const;
