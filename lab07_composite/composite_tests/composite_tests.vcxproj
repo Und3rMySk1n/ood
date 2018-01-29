@@ -161,6 +161,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\composite\CompositeFillStyle.h" />
+    <ClInclude Include="..\composite\CompositeOutlineStyle.h" />
     <ClInclude Include="..\composite\Ellipse.h" />
     <ClInclude Include="..\composite\GroupShape.h" />
     <ClInclude Include="..\composite\IShape.h" />
@@ -174,6 +176,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\composite\CompositeFillStyle.cpp" />
+    <ClCompile Include="..\composite\CompositeOutlineStyle.cpp" />
     <ClCompile Include="..\composite\Ellipse.cpp" />
     <ClCompile Include="..\composite\GroupShape.cpp" />
     <ClCompile Include="..\composite\Rectangle.cpp" />

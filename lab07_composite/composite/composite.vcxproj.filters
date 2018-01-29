@@ -45,6 +45,12 @@
     <ClCompile Include="Shapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CompositeFillStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeOutlineStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="version1.h">
@@ -105,6 +111,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeFillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeOutlineStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -59,13 +59,13 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			BOOST_CHECK_EQUAL(groupShape->GetFrame().height, emptyFrame.height);
 		}
 
-		BOOST_AUTO_TEST_CASE(will_not_return_common_style_while_empty)
+		BOOST_AUTO_TEST_CASE(will_return_empty_common_style_while_empty)
 		{
 			shared_ptr<const IStyle> commonFillStyle = groupShape->GetFillStyle();
 			shared_ptr<const IStyle> commonOutlineStyle = groupShape->GetOutlineStyle();
 
-			BOOST_CHECK(!commonFillStyle);
-			BOOST_CHECK(!commonOutlineStyle);
+			BOOST_CHECK(!commonFillStyle->GetColor());
+			BOOST_CHECK(!commonOutlineStyle->GetColor());
 		}
 
 		BOOST_AUTO_TEST_CASE(will_return_common_style_if_got_shapes_with_same_style)
@@ -84,10 +84,10 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			shared_ptr<const IStyle> commonStyle = groupShape->GetFillStyle();
 
 			BOOST_CHECK_EQUAL(commonStyle->IsEnabled(), true);
-			BOOST_CHECK_EQUAL(commonStyle->GetColor(), 127);
+			BOOST_CHECK_EQUAL(commonStyle->GetColor(), (RGBAColor)127);
 		}
 
-		BOOST_AUTO_TEST_CASE(will_return_nullptr_if_got_shapes_with_similar_but_different_styles)
+		BOOST_AUTO_TEST_CASE(will_return_style_without_color_if_got_shapes_with_similar_but_different_styles)
 		{
 			shared_ptr<IStyle> firstStyle = make_shared<CStyle>(true, 127);
 			shared_ptr<IStyle> secondStyle = make_shared<CStyle>(true, 127);
@@ -103,10 +103,10 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 
 			shared_ptr<const IStyle> commonStyle = groupShape->GetOutlineStyle();
 
-			BOOST_CHECK(!commonStyle);
+			BOOST_CHECK(!commonStyle->GetColor());
 		}
 
-		BOOST_AUTO_TEST_CASE(will_return_empty_common_style_if_got_shapes_with_different_style)
+		BOOST_AUTO_TEST_CASE(will_return_style_without_color_if_got_shapes_with_different_style)
 		{
 			shared_ptr<IStyle> firstStyle = make_shared<CStyle>(true, 127);
 			shared_ptr<IStyle> secondStyle = make_shared<CStyle>(true, 134);
@@ -122,7 +122,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 
 			shared_ptr<const IStyle> commonStyle = groupShape->GetOutlineStyle();
 
-			BOOST_CHECK(!commonStyle);
+			BOOST_CHECK(!commonStyle->GetColor());
 		}
 
 		struct after_adding_a_shape_ : Group_shape_

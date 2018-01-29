@@ -1,5 +1,7 @@
 #include "GroupShape.h"
 #include "Style.h"
+#include "CompositeFillStyle.h"
+#include "CompositeOutlineStyle.h"
 
 using namespace std;
 
@@ -14,12 +16,14 @@ void CGroupShape::Draw(ICanvas & canvas)
 
 shared_ptr<const IStyle> CGroupShape::GetOutlineStyle()const
 {
-	return CalculateOutlineStyle();
+	std::shared_ptr<const CShapes> shapes = make_shared<CShapes>(m_shapes);
+	return make_shared<CCompositeOutlineStyle>(shapes);
 }
 
 shared_ptr<const IStyle> CGroupShape::GetFillStyle()const
 {
-	return CalculateFillStyle();
+	std::shared_ptr<const CShapes> shapes = make_shared<CShapes>(m_shapes);
+	return make_shared<CCompositeFillStyle>(shapes);
 }
 
 shared_ptr<IGroupShape> CGroupShape::GetGroup()
@@ -80,56 +84,6 @@ void CGroupShape::SetFrame(const RectD & rect)
 		shapeFrame.height = shapeFrame.height * (rect.height / oldFrame.height);
 		shape->SetFrame(shapeFrame);
 	}
-}
-
-shared_ptr<const IStyle> CGroupShape::CalculateOutlineStyle()const
-{
-	if (m_shapes.GetShapesCount() == 0)
-	{
-		return nullptr;
-	}
-
-	std::shared_ptr<const IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetOutlineStyle();
-	if (m_shapes.GetShapesCount() > 0)
-	{
-		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
-		{
-			auto shape = m_shapes.GetShapeAtIndex(i);
-
-			if (commonStyle != shape->GetOutlineStyle())
-			{
-				commonStyle = nullptr;
-				break;
-			}
-		}
-	}
-
-	return commonStyle;
-}
-
-shared_ptr<const IStyle> CGroupShape::CalculateFillStyle()const
-{
-	if (m_shapes.GetShapesCount() == 0)
-	{
-		return nullptr;
-	}
-
-	std::shared_ptr<const IStyle> commonStyle = m_shapes.GetShapeAtIndex(0)->GetFillStyle();
-	if (m_shapes.GetShapesCount() > 0)
-	{
-		for (int i = 1; i < m_shapes.GetShapesCount(); i++)
-		{
-			auto shape = m_shapes.GetShapeAtIndex(i);
-
-			if (commonStyle != shape->GetFillStyle())
-			{
-				commonStyle = nullptr;
-				break;
-			}
-		}
-	}
-
-	return commonStyle;
 }
 
 void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)

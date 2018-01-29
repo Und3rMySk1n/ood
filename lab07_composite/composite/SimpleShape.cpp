@@ -41,9 +41,13 @@ void CSimpleShape::SetFillStyle(const std::shared_ptr<IStyle> &style)
 
 void CSimpleShape::SetCanvasStyles(ICanvas & canvas)
 {
-	canvas.SetLineColor(m_outlineStyle->GetColor());
+	if (m_outlineStyle->GetColor()) 
+	{
+		canvas.SetLineColor(*m_outlineStyle->GetColor());
+	}
+	
 	if (m_fillStyle->IsEnabled())
 	{
-		canvas.BeginFill(m_fillStyle->GetColor());
+		canvas.BeginFill(*m_fillStyle->GetColor());
 	}
 }
