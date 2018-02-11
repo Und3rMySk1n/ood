@@ -87,7 +87,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 			BOOST_CHECK_EQUAL(commonStyle->GetColor(), (RGBAColor)127);
 		}
 
-		BOOST_AUTO_TEST_CASE(will_return_style_without_color_if_got_shapes_with_similar_but_different_styles)
+		BOOST_AUTO_TEST_CASE(will_return_common_style_if_got_shapes_with_similar_styles)
 		{
 			shared_ptr<IStyle> firstStyle = make_shared<CStyle>(true, 127);
 			shared_ptr<IStyle> secondStyle = make_shared<CStyle>(true, 127);
@@ -103,7 +103,7 @@ BOOST_FIXTURE_TEST_SUITE(Group_shape, Group_shape_)
 
 			shared_ptr<const IStyle> commonStyle = groupShape->GetOutlineStyle();
 
-			BOOST_CHECK(!commonStyle->GetColor());
+			BOOST_CHECK_EQUAL(commonStyle->GetColor(), (RGBAColor)127);
 		}
 
 		BOOST_AUTO_TEST_CASE(will_return_style_without_color_if_got_shapes_with_different_style)

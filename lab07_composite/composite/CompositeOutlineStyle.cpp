@@ -1,27 +1,42 @@
 #include "CompositeOutlineStyle.h"
+#include "Style.h"
 
 void CCompositeOutlineStyle::Enable(bool enable)
 {
-	throw std::logic_error("Composite style can not be modified directly.");
+	throw std::logic_error("Composite style can not be enabled directly.");
 }
 
 void CCompositeOutlineStyle::SetColor(RGBAColor color)
 {
-	throw std::logic_error("Composite style can not be modified directly.");
+	if (m_shapes->GetShapesCount() != 0)
+	{
+		std::shared_ptr<IStyle> style = std::make_shared<CStyle>(true, color);
+		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
+		{
+			auto shape = m_shapes->GetShapeAtIndex(i);
+			shape->SetOutlineStyle(style);
+		}
+	}
 }
 
 optional<bool> CCompositeOutlineStyle::IsEnabled()const
 {
-	optional<bool> isEnabled = true;
+	optional<bool> isEnabled;
 
-	if (m_shapes->GetShapesCount() > 0)
+	if (m_shapes->GetShapesCount() == 1)
 	{
-		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
+		return m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled();
+	}
+
+	if (m_shapes->GetShapesCount() > 1)
+	{
+		isEnabled = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled();
+		for (int i = 1; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			if (shape->GetOutlineStyle()->IsEnabled() != true)
+			if (shape->GetOutlineStyle()->IsEnabled() != isEnabled)
 			{
-				isEnabled = false;
+				isEnabled = boost::none;
 				break;
 			}
 		}
@@ -33,28 +48,32 @@ optional<bool> CCompositeOutlineStyle::IsEnabled()const
 optional<RGBAColor> CCompositeOutlineStyle::GetColor()const
 {
 	optional<RGBAColor> resultColor;
-	if (m_shapes->GetShapesCount() == 0)
+
+	if (m_shapes->GetShapesCount() == 1)
 	{
-		return resultColor;
+		auto style = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle();
+		if (style->IsEnabled())
+		{
+			return style->GetColor();
+		}
 	}
 
-	std::shared_ptr<const IStyle> commonStyle = m_shapes->GetShapeAtIndex(0)->GetFillStyle();
-	if (m_shapes->GetShapesCount() > 0)
+	if (m_shapes->GetShapesCount() > 1)
 	{
-		for (int i = 1; i < m_shapes->GetShapesCount(); i++)
+		if (m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled())
 		{
-			auto shape = m_shapes->GetShapeAtIndex(i);
-			if (commonStyle != shape->GetOutlineStyle())
+			resultColor = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->GetColor();
+			for (int i = 1; i < m_shapes->GetShapesCount(); i++)
 			{
-				commonStyle = nullptr;
-				break;
+				auto style = m_shapes->GetShapeAtIndex(i)->GetOutlineStyle();
+				if (style->GetColor() != resultColor || !style->IsEnabled())
+				{
+					resultColor = boost::none;
+					break;
+				}
 			}
 		}
 	}
 
-	if (commonStyle != nullptr)
-	{
-		resultColor = commonStyle->GetColor();
-	}
 	return resultColor;
 }
