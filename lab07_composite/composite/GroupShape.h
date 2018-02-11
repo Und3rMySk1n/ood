@@ -2,10 +2,14 @@
 #include <memory>
 #include "IGroupShape.h"
 #include "Shapes.h"
+#include "CompositeFillStyle.h"
+#include "CompositeOutlineStyle.h"
 
 class CGroupShape : public IGroupShape
 {
 public:
+	CGroupShape();
+
 	virtual void Draw(ICanvas & canvas) override;
 
 	virtual std::shared_ptr<const IStyle> GetOutlineStyle() const override;
@@ -26,7 +30,7 @@ public:
 	virtual std::shared_ptr<IShape> GetShapeAtIndex(size_t index)const override;
 
 private:
-	std::shared_ptr<const IStyle> CalculateOutlineStyle()const;
-	std::shared_ptr<const IStyle> CalculateFillStyle()const;
-	CShapes m_shapes;
+	std::shared_ptr<CShapes> m_shapes;
+	std::shared_ptr<CCompositeFillStyle> m_fillStyle;
+	std::shared_ptr<CCompositeOutlineStyle> m_outlineStyle;
 };

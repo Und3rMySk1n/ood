@@ -18,6 +18,6 @@ public:
 
 	~CCompositeOutlineStyle() {}
 private:
-	std::shared_ptr<const CShapes> m_shapes;
+	std::shared_ptr<const IShapes> m_shapes;
 };
 
