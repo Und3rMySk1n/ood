@@ -91,30 +91,6 @@ void CGroupShape::SetFrame(const RectD & rect)
 	}
 }
 
-void CGroupShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
-{
-	if (m_shapes->GetShapesCount() != 0)
-	{
-		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
-		{
-			auto shape = m_shapes->GetShapeAtIndex(i);
-			shape->SetOutlineStyle(style);
-		}
-	}
-}
-
-void CGroupShape::SetFillStyle(const std::shared_ptr<IStyle> &style)
-{
-	if (m_shapes->GetShapesCount() != 0)
-	{
-		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
-		{
-			auto shape = m_shapes->GetShapeAtIndex(i);
-			shape->SetFillStyle(style);
-		}
-	}
-}
-
 size_t CGroupShape::GetShapesCount()const
 {
 	return m_shapes->GetShapesCount();

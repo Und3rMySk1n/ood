@@ -29,16 +29,6 @@ std::shared_ptr<const IGroupShape> CSimpleShape::GetGroup() const
 	return nullptr;
 }
 
-void CSimpleShape::SetOutlineStyle(const std::shared_ptr<IStyle> &style)
-{
-	m_outlineStyle = style;
-}
-
-void CSimpleShape::SetFillStyle(const std::shared_ptr<IStyle> &style)
-{
-	m_fillStyle = style;
-}
-
 void CSimpleShape::SetCanvasStyles(ICanvas & canvas)
 {
 	if (m_outlineStyle->GetColor()) 

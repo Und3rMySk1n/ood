@@ -15,9 +15,6 @@ public:
 	virtual std::shared_ptr<IStyle> GetOutlineStyle() const override;
 	virtual std::shared_ptr<IStyle> GetFillStyle() const override;
 
-	void SetOutlineStyle(const std::shared_ptr<IStyle> &style) override;
-	void SetFillStyle(const std::shared_ptr<IStyle> &style) override;
-
 	virtual std::shared_ptr<IGroupShape> GetGroup() override;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const override;
 

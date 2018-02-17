@@ -18,11 +18,11 @@ void CCompositeFillStyle::SetColor(RGBAColor color)
 {
 	if (m_shapes->GetShapesCount() != 0)
 	{
-		std::shared_ptr<IStyle> style = std::make_shared<CStyle>(true, color);
 		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			shape->SetFillStyle(style);
+			auto style = shape->GetFillStyle();
+			style->SetColor(color);
 		}
 	}
 }

@@ -18,11 +18,11 @@ void CCompositeOutlineStyle::SetColor(RGBAColor color)
 {
 	if (m_shapes->GetShapesCount() != 0)
 	{
-		std::shared_ptr<IStyle> style = std::make_shared<CStyle>(true, color);
 		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			shape->SetOutlineStyle(style);
+			auto style = shape->GetOutlineStyle();
+			style->SetColor(color);
 		}
 	}
 }
