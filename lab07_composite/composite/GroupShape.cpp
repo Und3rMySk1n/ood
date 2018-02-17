@@ -21,12 +21,12 @@ void CGroupShape::Draw(ICanvas & canvas)
 	}
 }
 
-shared_ptr<const IStyle> CGroupShape::GetOutlineStyle()const
+shared_ptr<IStyle> CGroupShape::GetOutlineStyle()const
 {
 	return m_outlineStyle;
 }
 
-shared_ptr<const IStyle> CGroupShape::GetFillStyle()const
+shared_ptr<IStyle> CGroupShape::GetFillStyle()const
 {
 	return m_fillStyle;
 }

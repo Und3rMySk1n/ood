@@ -3,7 +3,15 @@
 
 void CCompositeOutlineStyle::Enable(bool enable)
 {
-	throw std::logic_error("Composite style can not be enabled directly.");
+	if (m_shapes->GetShapesCount() != 0)
+	{
+		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
+		{
+			auto shape = m_shapes->GetShapeAtIndex(i);
+			auto style = shape->GetOutlineStyle();
+			style->Enable(true);
+		}
+	}
 }
 
 void CCompositeOutlineStyle::SetColor(RGBAColor color)

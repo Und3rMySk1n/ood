@@ -7,8 +7,8 @@ class CSimpleShape : public IShape
 public:
 	CSimpleShape();
 	
-	virtual std::shared_ptr<const IStyle> GetOutlineStyle()const override;
-	virtual std::shared_ptr<const IStyle> GetFillStyle()const override;
+	virtual std::shared_ptr<IStyle> GetOutlineStyle()const override;
+	virtual std::shared_ptr<IStyle> GetFillStyle()const override;
 
 	virtual std::shared_ptr<IGroupShape> GetGroup() override;
 	virtual std::shared_ptr<const IGroupShape> GetGroup() const override;
