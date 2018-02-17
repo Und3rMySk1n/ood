@@ -1,15 +1,16 @@
 #include "GroupShape.h"
 #include "Style.h"
-#include "CompositeFillStyle.h"
-#include "CompositeOutlineStyle.h"
+#include "CompositeStyle.h"
+#include "GetFillStyle.h"
+#include "GetOutlineStyle.h"
 
 using namespace std;
 
 CGroupShape::CGroupShape()
 {
 	m_shapes = make_shared<CShapes>();
-	m_fillStyle = make_shared<CCompositeFillStyle>(m_shapes);
-	m_outlineStyle = make_shared<CCompositeOutlineStyle>(m_shapes);
+	m_fillStyle = make_shared<CCompositeStyle>(m_shapes, make_unique<CGetFillStyle>());
+	m_outlineStyle = make_shared<CCompositeStyle>(m_shapes, make_unique<CGetOutlineStyle>());
 }
 
 void CGroupShape::Draw(ICanvas & canvas)

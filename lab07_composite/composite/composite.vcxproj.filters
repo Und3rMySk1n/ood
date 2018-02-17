@@ -45,10 +45,13 @@
     <ClCompile Include="Shapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompositeFillStyle.cpp">
+    <ClCompile Include="GetFillStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompositeOutlineStyle.cpp">
+    <ClCompile Include="GetOutlineStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,10 +116,16 @@
     <ClInclude Include="Shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompositeFillStyle.h">
+    <ClInclude Include="IGetStyleBehavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompositeOutlineStyle.h">
+    <ClInclude Include="GetFillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GetOutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

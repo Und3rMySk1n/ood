@@ -51,10 +51,16 @@
     <ClInclude Include="..\composite\Shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\composite\CompositeFillStyle.h">
+    <ClInclude Include="..\composite\CompositeStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\composite\CompositeOutlineStyle.h">
+    <ClInclude Include="..\composite\GetFillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\composite\GetOutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\composite\IGetStyleBehavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,10 +92,13 @@
     <ClCompile Include="..\composite\Shapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\composite\CompositeFillStyle.cpp">
+    <ClCompile Include="..\composite\CompositeStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\composite\CompositeOutlineStyle.cpp">
+    <ClCompile Include="..\composite\GetFillStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\composite\GetOutlineStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,48 +1,56 @@
-#include "CompositeOutlineStyle.h"
+#include "CompositeStyle.h"
 #include "Style.h"
 
-void CCompositeOutlineStyle::Enable(bool enable)
+using namespace std;
+
+void CCompositeStyle::Enable(bool enable)
 {
 	if (m_shapes->GetShapesCount() != 0)
 	{
 		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			auto style = shape->GetOutlineStyle();
+			auto style = m_getStyle->GetStyle(shape);
 			style->Enable(true);
 		}
 	}
 }
 
-void CCompositeOutlineStyle::SetColor(RGBAColor color)
+void CCompositeStyle::SetColor(RGBAColor color)
 {
 	if (m_shapes->GetShapesCount() != 0)
 	{
 		for (int i = 0; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			auto style = shape->GetOutlineStyle();
+			auto style = m_getStyle->GetStyle(shape);
 			style->SetColor(color);
 		}
 	}
 }
 
-optional<bool> CCompositeOutlineStyle::IsEnabled()const
+optional<bool> CCompositeStyle::IsEnabled()const
 {
 	optional<bool> isEnabled;
 
 	if (m_shapes->GetShapesCount() == 1)
 	{
-		return m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled();
+		auto shape = m_shapes->GetShapeAtIndex(0);
+		auto style = m_getStyle->GetStyle(shape);
+		return style->IsEnabled();
 	}
 
 	if (m_shapes->GetShapesCount() > 1)
 	{
-		isEnabled = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled();
+		auto firstShape = m_shapes->GetShapeAtIndex(0);
+		auto firstStyle = m_getStyle->GetStyle(firstShape);
+
+		isEnabled = firstStyle->IsEnabled();
 		for (int i = 1; i < m_shapes->GetShapesCount(); i++)
 		{
 			auto shape = m_shapes->GetShapeAtIndex(i);
-			if (shape->GetOutlineStyle()->IsEnabled() != isEnabled)
+			auto style = m_getStyle->GetStyle(shape);
+			if (style->IsEnabled() != isEnabled)
 			{
 				isEnabled = boost::none;
 				break;
@@ -53,13 +61,13 @@ optional<bool> CCompositeOutlineStyle::IsEnabled()const
 	return isEnabled;
 }
 
-optional<RGBAColor> CCompositeOutlineStyle::GetColor()const
+optional<RGBAColor> CCompositeStyle::GetColor()const
 {
 	optional<RGBAColor> resultColor;
 
 	if (m_shapes->GetShapesCount() == 1)
 	{
-		auto style = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle();
+		auto style = m_getStyle->GetStyle(m_shapes->GetShapeAtIndex(0));
 		if (style->IsEnabled())
 		{
 			return style->GetColor();
@@ -68,14 +76,19 @@ optional<RGBAColor> CCompositeOutlineStyle::GetColor()const
 
 	if (m_shapes->GetShapesCount() > 1)
 	{
-		if (m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->IsEnabled())
+		auto firstShape = m_shapes->GetShapeAtIndex(0);
+		auto firstStyle = m_getStyle->GetStyle(firstShape);
+
+		if (firstStyle->IsEnabled())
 		{
-			resultColor = m_shapes->GetShapeAtIndex(0)->GetOutlineStyle()->GetColor();
+			resultColor = firstStyle->GetColor();
 			for (int i = 1; i < m_shapes->GetShapesCount(); i++)
 			{
-				auto style = m_shapes->GetShapeAtIndex(i)->GetOutlineStyle();
+				auto shape = m_shapes->GetShapeAtIndex(i);
+				auto style = m_getStyle->GetStyle(shape);
+
 				if (style->GetColor() != resultColor || !style->IsEnabled())
-				{
+				{					
 					resultColor = boost::none;
 					break;
 				}

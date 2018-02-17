@@ -2,8 +2,7 @@
 #include <memory>
 #include "IGroupShape.h"
 #include "Shapes.h"
-#include "CompositeFillStyle.h"
-#include "CompositeOutlineStyle.h"
+#include "CompositeStyle.h"
 
 class CGroupShape : public IGroupShape
 {
@@ -28,6 +27,6 @@ public:
 
 private:
 	std::shared_ptr<CShapes> m_shapes;
-	std::shared_ptr<CCompositeFillStyle> m_fillStyle;
-	std::shared_ptr<CCompositeOutlineStyle> m_outlineStyle;
+	std::shared_ptr<CCompositeStyle> m_fillStyle;
+	std::shared_ptr<CCompositeStyle> m_outlineStyle;
 };

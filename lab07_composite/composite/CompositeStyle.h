@@ -2,12 +2,14 @@
 #include <memory>
 #include "IStyle.h"
 #include "Shapes.h"
+#include "IGetStyleBehavior.h"
 
-class CCompositeFillStyle : public IStyle
+class CCompositeStyle : public IStyle
 {
 public:
-	CCompositeFillStyle(std::shared_ptr<const CShapes> shapes)
+	CCompositeStyle(std::shared_ptr<const CShapes> shapes, std::unique_ptr<IGetStyleBehavior> getStyle)
 		: m_shapes(move(shapes))
+		, m_getStyle(move(getStyle))
 	{}
 
 	virtual optional<bool> IsEnabled()const override;
@@ -16,8 +18,9 @@ public:
 	virtual optional<RGBAColor> GetColor()const override;
 	virtual void SetColor(RGBAColor color) override;
 
-	~CCompositeFillStyle() {}
+	~CCompositeStyle() {}
 private:
 	std::shared_ptr<const IShapes> m_shapes;
+	std::unique_ptr<IGetStyleBehavior> m_getStyle;
 };
 

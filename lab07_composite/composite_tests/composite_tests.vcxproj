@@ -161,10 +161,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\composite\CompositeFillStyle.h" />
-    <ClInclude Include="..\composite\CompositeOutlineStyle.h" />
+    <ClInclude Include="..\composite\CompositeStyle.h" />
     <ClInclude Include="..\composite\Ellipse.h" />
+    <ClInclude Include="..\composite\GetFillStyle.h" />
+    <ClInclude Include="..\composite\GetOutlineStyle.h" />
     <ClInclude Include="..\composite\GroupShape.h" />
+    <ClInclude Include="..\composite\IGetStyleBehavior.h" />
     <ClInclude Include="..\composite\IShape.h" />
     <ClInclude Include="..\composite\IShapes.h" />
     <ClInclude Include="..\composite\IStyle.h" />
@@ -176,9 +178,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\composite\CompositeFillStyle.cpp" />
-    <ClCompile Include="..\composite\CompositeOutlineStyle.cpp" />
+    <ClCompile Include="..\composite\CompositeStyle.cpp" />
     <ClCompile Include="..\composite\Ellipse.cpp" />
+    <ClCompile Include="..\composite\GetFillStyle.cpp" />
+    <ClCompile Include="..\composite\GetOutlineStyle.cpp" />
     <ClCompile Include="..\composite\GroupShape.cpp" />
     <ClCompile Include="..\composite\Rectangle.cpp" />
     <ClCompile Include="..\composite\Shapes.cpp" />
