@@ -23,18 +23,19 @@ vector<std::pair<double, double>> CEquationSolver::GetChartPoints()const
 {
 	vector<std::pair<double, double>> result;
 
-	float step = (double)(m_horizontalLimit / m_frequency);
-	int x = 0;
+	double step = (double)(m_horizontalLimit / m_frequency);
+	double x = 0;
 
 	for (int i = 0; i <= m_frequency; i++)
 	{
 		std::pair<double, double> point;
-		point.first = (float)x;
-		point.second = (m_function == FunctionType::SIN) ? m_a * sinf(m_b * x + m_c) : m_a * cosf(m_b * x + m_c);		
+		point.first = (double)x;
+		point.second = (m_function == FunctionType::SIN) ? m_a * sin(m_b * x + m_c) : m_a * cos(m_b * x + m_c);
 
 		result.push_back(point);
 		x += step;
 	}
+	
 
 	return result;
 }
@@ -86,7 +87,7 @@ int CEquationSolver::GetFrequency()const
 	return m_frequency;
 }
 
-int CEquationSolver::GetHorizontalLimit()const
+double CEquationSolver::GetHorizontalLimit()const
 {
 	return m_horizontalLimit;
 }

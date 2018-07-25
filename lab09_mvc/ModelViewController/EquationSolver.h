@@ -29,7 +29,7 @@ public:
 	void SetConstantCoeff(double c);
 
 	int GetFrequency() const;
-	int GetHorizontalLimit() const;
+	double GetHorizontalLimit() const;
 
 	void SetFunctionType(FunctionType newType);
 	FunctionType GetFunctionType();
@@ -38,7 +38,7 @@ private:
 	double m_b = 0;
 	double m_c = 0;
 	int m_frequency = 100;
-	int m_horizontalLimit = 5;
+	double m_horizontalLimit = 5;
 	FunctionType m_function = FunctionType::SIN;
 
 	SolutionChangeSignal m_solutionChanged;
