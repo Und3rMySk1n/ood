@@ -37,6 +37,8 @@ private:
 	afx_msg void OnKillfocusCoeffA();
 	afx_msg void OnKillfocusCoeffB();
 	afx_msg void OnKillfocusCoeffC();
+	afx_msg void OnRadio1Clicked();
+	afx_msg void OnRadio2Clicked();
 
 	sig::scoped_connection m_solutionChangeConnection;
 	IMainDlgController & m_controller;
@@ -55,7 +57,4 @@ private:
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnRadio1Clicked();
-	afx_msg void OnRadio2Clicked();
 };

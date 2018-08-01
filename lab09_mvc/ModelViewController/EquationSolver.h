@@ -31,9 +31,9 @@ public:
 	void SetFunctionType(FunctionType newType);
 	FunctionType GetFunctionType();
 private:
-	double m_a = 0;
-	double m_b = 0;
-	double m_c = 0;
+	double m_amplitude = 0;
+	double m_frequency = 0;
+	double m_phase = 0;
 	FunctionType m_function = FunctionType::SIN;
 
 	SolutionChangeSignal m_solutionChanged;

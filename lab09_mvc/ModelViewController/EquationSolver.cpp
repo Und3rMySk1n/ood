@@ -30,7 +30,7 @@ vector<std::pair<double, double>> CEquationSolver::GetChartPoints(const double h
 	{
 		std::pair<double, double> point;
 		point.first = (double)x;
-		point.second = (m_function == FunctionType::SIN) ? m_a * sin(m_b * x + m_c) : m_a * cos(m_b * x + m_c);
+		point.second = (m_function == FunctionType::SIN) ? m_amplitude * sin(m_frequency * x + m_phase) : m_amplitude * cos(m_frequency * x + m_phase);
 
 		result.push_back(point);
 		x += step;
@@ -42,42 +42,42 @@ vector<std::pair<double, double>> CEquationSolver::GetChartPoints(const double h
 
 double CEquationSolver::GetAmplitude() const
 {
-	return m_a;
+	return m_amplitude;
 }
 
 void CEquationSolver::SetAmplitude(double a)
 {
-	if (m_a != a)
+	if (m_amplitude != a)
 	{
-		m_a = a;
+		m_amplitude = a;
 		m_solutionChanged();
 	}
 }
 
 double CEquationSolver::GetFrequency() const
 {
-	return m_b;
+	return m_frequency;
 }
 
 void CEquationSolver::SetFrequency(double b)
 {
-	if (m_b != b)
+	if (m_frequency != b)
 	{
-		m_b = b;
+		m_frequency = b;
 		m_solutionChanged();
 	}
 }
 
 double CEquationSolver::GetPhase() const
 {
-	return m_c;
+	return m_phase;
 }
 
 void CEquationSolver::SetPhase(double c)
 {
-	if (m_c != c)
+	if (m_phase != c)
 	{
-		m_c = c;
+		m_phase = c;
 		m_solutionChanged();
 	}
 }
