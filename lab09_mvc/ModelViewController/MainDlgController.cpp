@@ -21,17 +21,17 @@ void CMainDlgController::ShowDialog()
 
 void CMainDlgController::SetCoeffA(double a)
 {
-	m_solver.SetQuadraticCoeff(a);
+	m_solver.SetAmplitude(a);
 }
 
 void CMainDlgController::SetCoeffB(double b)
 {
-	m_solver.SetLinearCoeff(b);
+	m_solver.SetFrequency(b);
 }
 
 void CMainDlgController::SetCoeffC(double c)
 {
-	m_solver.SetConstantCoeff(c);
+	m_solver.SetPhase(c);
 }
 
 void CMainDlgController::SetFunctionType(FunctionType newType)

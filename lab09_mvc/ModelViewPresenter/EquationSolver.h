@@ -21,14 +21,14 @@ public:
 
 	EquationRoots GetEquationRoots()const;
 
-	double GetQuadraticCoeff()const;
-	void SetQuadraticCoeff(double a);
+	double GetAmplitude()const;
+	void SetAmplitude(double a);
 
-	double GetLinearCoeff()const;
-	void SetLinearCoeff(double b);
+	double GetFrequency()const;
+	void SetFrequency(double b);
 
-	double GetConstantCoeff()const;
-	void SetConstantCoeff(double c);
+	double GetPhase()const;
+	void SetPhase(double c);
 private:
 	double m_a = 0;
 	double m_b = 0;

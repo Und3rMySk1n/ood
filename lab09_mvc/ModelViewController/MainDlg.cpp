@@ -18,9 +18,9 @@ CMainDlg::CMainDlg(CEquationSolver & solver, IMainDlgController & controller, CW
 	: CDialogEx(IDD_MODELVIEWCONTROLLER_DIALOG, pParent)
 	, m_controller(controller)
 	, m_solver(solver)
-	, m_coeffA(solver.GetQuadraticCoeff())
-	, m_coeffB(solver.GetLinearCoeff())
-	, m_coeffC(solver.GetConstantCoeff())
+	, m_coeffA(solver.GetAmplitude())
+	, m_coeffB(solver.GetFrequency())
+	, m_coeffC(solver.GetPhase())
 	, m_drawArea()
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -84,11 +84,6 @@ BOOL CMainDlg::OnInitDialog()
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
-void CMainDlg::SetSolutionText(const std::wstring & text)
-{
-	SetDlgItemText(IDC_SOLUTION, text.c_str());
-}
-
 void CMainDlg::SetEquationText(const std::wstring & text)
 {
 	SetDlgItemText(IDC_EQUATION, text.c_str());
@@ -113,8 +108,8 @@ void CMainDlg::DrawChart()
 	int x_start = 10;
 	int y_start = h / 2;
 
-	double horizontalCoef = ((double)w - 2.0 * (double)x_start) / m_solver.GetHorizontalLimit();
-	double verticalCoef = ((double)h / 2.0) / m_solver.GetQuadraticCoeff();
+	double horizontalCoef = ((double)w - 2.0 * (double)x_start) / m_horizontalLimit;
+	double verticalCoef = ((double)h / 2.0) / m_solver.GetAmplitude();
 
 	//Drawing chart rulers
 	CPen pnPenBlack(PS_SOLID, 1, RGB(0, 0, 0));
@@ -130,10 +125,10 @@ void CMainDlg::DrawChart()
 	dc.SelectObject(&pnPenRed);
 	dc.MoveTo(x_start, y_start);
 
-	std::vector<std::pair<double, double>> chartPoints = m_solver.GetChartPoints();
+	std::vector<std::pair<double, double>> chartPoints = m_solver.GetChartPoints(m_horizontalLimit, m_detalization);
 	for (auto point : chartPoints)
 	{
-		dc.LineTo((double)x_start + (point.first * horizontalCoef), (double)y_start + (point.second * verticalCoef));
+		dc.LineTo(x_start + (int)(point.first * horizontalCoef), y_start + (int)(point.second * verticalCoef));
 	}
 
 	dc.SelectObject(pOldPen);
@@ -145,7 +140,7 @@ void CMainDlg::UpdateEquation()
 		return ((function == FunctionType::SIN) ? L"sin" : L"cos");
 	};
 
-	SetEquationText((boost::wformat(L"%1%*%2%(%3%x + %4%)") % m_solver.GetQuadraticCoeff() % FunctionToString(m_solver.GetFunctionType()) % m_solver.GetLinearCoeff() % m_solver.GetConstantCoeff()).str());
+	SetEquationText((boost::wformat(L"%1%*%2%(%3%x + %4%)") % m_solver.GetAmplitude() % FunctionToString(m_solver.GetFunctionType()) % m_solver.GetFrequency() % m_solver.GetPhase()).str());
 	DrawChart();
 }
 

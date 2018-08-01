@@ -17,19 +17,16 @@ public:
 	typedef sig::signal<void()> SolutionChangeSignal;
 	sig::connection DoOnSolutionChange(const SolutionChangeSignal::slot_type & handler);
 
-	std::vector<std::pair<double, double>> GetChartPoints()const;
+	std::vector<std::pair<double, double>> GetChartPoints(const double horizontalLimit, const double detalization)const;
 
-	double GetQuadraticCoeff()const;
-	void SetQuadraticCoeff(double a);
+	double GetAmplitude()const;
+	void SetAmplitude(double a);
 
-	double GetLinearCoeff()const;
-	void SetLinearCoeff(double b);
+	double GetFrequency()const;
+	void SetFrequency(double b);
 
-	double GetConstantCoeff()const;
-	void SetConstantCoeff(double c);
-
-	int GetFrequency() const;
-	double GetHorizontalLimit() const;
+	double GetPhase()const;
+	void SetPhase(double c);
 
 	void SetFunctionType(FunctionType newType);
 	FunctionType GetFunctionType();
@@ -37,8 +34,6 @@ private:
 	double m_a = 0;
 	double m_b = 0;
 	double m_c = 0;
-	int m_frequency = 100;
-	double m_horizontalLimit = 5;
 	FunctionType m_function = FunctionType::SIN;
 
 	SolutionChangeSignal m_solutionChanged;

@@ -94,26 +94,6 @@ IChartView & CMainDlg::GetChartView()
 	return m_chart;
 }
 
-void CMainDlg::SetNoSolution()
-{
-	SetSolutionText(L"No real roots");
-}
-
-void CMainDlg::SetInfiniteSolutions()
-{
-	SetSolutionText(L"Infinite number of roots");
-}
-
-void CMainDlg::SetSingleSolution(double solution)
-{
-	SetSolutionText((boost::wformat(L"One root: %1%") % solution).str());
-}
-
-void CMainDlg::SetTwoRootsSolutuion(double root1, double root2)
-{
-	SetSolutionText((boost::wformat(L"Two roots: %1% and %2%") % root1 % root2).str());
-}
-
 sig::connection CMainDlg::DoOnCoeffAChange(const CoeffChangeSignal::slot_type & handler)
 {
 	return m_coeffAChanged.connect(handler);
@@ -127,11 +107,6 @@ sig::connection CMainDlg::DoOnCoeffBChange(const CoeffChangeSignal::slot_type & 
 sig::connection CMainDlg::DoOnCoeffCChange(const CoeffChangeSignal::slot_type & handler)
 {
 	return m_coeffCChanged.connect(handler);
-}
-
-void CMainDlg::SetSolutionText(const std::wstring & text)
-{
-	SetDlgItemText(IDC_SOLUTION, text.c_str());
 }
 
 void CMainDlg::SetEquationText(const std::wstring & text)

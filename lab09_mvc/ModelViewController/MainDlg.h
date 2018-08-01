@@ -24,7 +24,6 @@ protected:
 
 // Implementation
 private:
-	void SetSolutionText(const std::wstring & text);
 	void SetEquationText(const std::wstring & text);
 	void SetRadioChangeText(const std::wstring & text);
 	void UpdateEquation();
@@ -42,10 +41,13 @@ private:
 	sig::scoped_connection m_solutionChangeConnection;
 	IMainDlgController & m_controller;
 	CEquationSolver & m_solver;
+	CStatic m_drawArea;
+
 	double m_coeffA = 0;
 	double m_coeffB = 0;
 	double m_coeffC = 0;
-	CStatic m_drawArea;
+	double m_horizontalLimit = 5;
+	double m_detalization = 100;
 	
 	HICON m_hIcon;
 

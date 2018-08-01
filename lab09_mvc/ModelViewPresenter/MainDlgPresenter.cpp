@@ -8,9 +8,9 @@ CMainDlgPresenter::CMainDlgPresenter(CEquationSolver & solver, IMainDlgView & vi
 	: m_solver(solver)
 	, m_view(view)
 {
-	m_view.DoOnCoeffAChange(std::bind(&CEquationSolver::SetQuadraticCoeff, &m_solver, std::placeholders::_1));
-	m_view.DoOnCoeffBChange(std::bind(&CEquationSolver::SetLinearCoeff, &m_solver, std::placeholders::_1));
-	m_view.DoOnCoeffCChange(std::bind(&CEquationSolver::SetConstantCoeff, &m_solver, std::placeholders::_1));
+	m_view.DoOnCoeffAChange(std::bind(&CEquationSolver::SetAmplitude, &m_solver, std::placeholders::_1));
+	m_view.DoOnCoeffBChange(std::bind(&CEquationSolver::SetFrequency, &m_solver, std::placeholders::_1));
+	m_view.DoOnCoeffCChange(std::bind(&CEquationSolver::SetPhase, &m_solver, std::placeholders::_1));
 	m_view.DoOnInit(std::bind(&CMainDlgPresenter::InitView, this));
 	m_solver.DoOnSolutionChange([this] {
 		UpdateSolution();
@@ -20,7 +20,7 @@ CMainDlgPresenter::CMainDlgPresenter(CEquationSolver & solver, IMainDlgView & vi
 
 void CMainDlgPresenter::InitView()
 {
-	m_view.SetCoeffs(m_solver.GetQuadraticCoeff(), m_solver.GetLinearCoeff(), m_solver.GetConstantCoeff());
+	m_view.SetCoeffs(m_solver.GetAmplitude(), m_solver.GetFrequency(), m_solver.GetPhase());
 	UpdateSolution();
 	UpdateChart();
 }

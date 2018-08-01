@@ -19,14 +19,14 @@ sig::connection CEquationSolver::DoOnSolutionChange(const SolutionChangeSignal::
 	return m_solutionChanged.connect(handler);
 }
 
-vector<std::pair<double, double>> CEquationSolver::GetChartPoints()const
+vector<std::pair<double, double>> CEquationSolver::GetChartPoints(const double horizontalLimit, const double detalization)const
 {
 	vector<std::pair<double, double>> result;
 
-	double step = (double)(m_horizontalLimit / m_frequency);
+	double step = (double)(horizontalLimit / detalization);
 	double x = 0;
 
-	for (int i = 0; i <= m_frequency; i++)
+	for (int i = 0; i <= detalization; i++)
 	{
 		std::pair<double, double> point;
 		point.first = (double)x;
@@ -40,12 +40,12 @@ vector<std::pair<double, double>> CEquationSolver::GetChartPoints()const
 	return result;
 }
 
-double CEquationSolver::GetQuadraticCoeff() const
+double CEquationSolver::GetAmplitude() const
 {
 	return m_a;
 }
 
-void CEquationSolver::SetQuadraticCoeff(double a)
+void CEquationSolver::SetAmplitude(double a)
 {
 	if (m_a != a)
 	{
@@ -54,12 +54,12 @@ void CEquationSolver::SetQuadraticCoeff(double a)
 	}
 }
 
-double CEquationSolver::GetLinearCoeff() const
+double CEquationSolver::GetFrequency() const
 {
 	return m_b;
 }
 
-void CEquationSolver::SetLinearCoeff(double b)
+void CEquationSolver::SetFrequency(double b)
 {
 	if (m_b != b)
 	{
@@ -68,28 +68,18 @@ void CEquationSolver::SetLinearCoeff(double b)
 	}
 }
 
-double CEquationSolver::GetConstantCoeff() const
+double CEquationSolver::GetPhase() const
 {
 	return m_c;
 }
 
-void CEquationSolver::SetConstantCoeff(double c)
+void CEquationSolver::SetPhase(double c)
 {
 	if (m_c != c)
 	{
 		m_c = c;
 		m_solutionChanged();
 	}
-}
-
-int CEquationSolver::GetFrequency()const
-{
-	return m_frequency;
-}
-
-double CEquationSolver::GetHorizontalLimit()const
-{
-	return m_horizontalLimit;
 }
 
 void CEquationSolver::SetFunctionType(FunctionType newType)

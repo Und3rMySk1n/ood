@@ -39,7 +39,6 @@ protected:
 
 // Implementation
 private:
-	void SetSolutionText(const std::wstring & text);
 	void SetEquationText(const std::wstring & text);
 	void UpdateEquation();
 	void OnChangeCoeffA();

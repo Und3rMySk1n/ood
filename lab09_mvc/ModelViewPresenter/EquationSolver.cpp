@@ -57,12 +57,12 @@ EquationRoots CEquationSolver::GetEquationRoots() const
 
 }
 
-double CEquationSolver::GetQuadraticCoeff() const
+double CEquationSolver::GetAmplitude() const
 {
 	return m_a;
 }
 
-void CEquationSolver::SetQuadraticCoeff(double a)
+void CEquationSolver::SetAmplitude(double a)
 {
 	if (m_a != a)
 	{
@@ -71,12 +71,12 @@ void CEquationSolver::SetQuadraticCoeff(double a)
 	}
 }
 
-double CEquationSolver::GetLinearCoeff() const
+double CEquationSolver::GetFrequency() const
 {
 	return m_b;
 }
 
-void CEquationSolver::SetLinearCoeff(double b)
+void CEquationSolver::SetFrequency(double b)
 {
 	if (m_b != b)
 	{
@@ -85,12 +85,12 @@ void CEquationSolver::SetLinearCoeff(double b)
 	}
 }
 
-double CEquationSolver::GetConstantCoeff() const
+double CEquationSolver::GetPhase() const
 {
 	return m_c;
 }
 
-void CEquationSolver::SetConstantCoeff(double c)
+void CEquationSolver::SetPhase(double c)
 {
 	if (m_c != c)
 	{
